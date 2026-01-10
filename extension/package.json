@@ -1,0 +1,16 @@
+{
+  "name": "planscope-extension",
+  "version": "1.0.0",
+  "description": "Planning permission intelligence overlay for UK property listings",
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "typescript": "^5.4.0",
+    "vite": "^5.4.0"
+  }
+}
