@@ -5,16 +5,16 @@ import { extractPostcode } from '../../utils';
  * Extract property data from Rightmove listing page
  *
  * Rightmove stores property data in various places:
- * 1. window.PAGE_MODEL (JSON object with property details)
- * 2. Meta tags
+ * 1. window.PAGE_MODEL (JSON object with property details) - requires page injection
+ * 2. Script tags containing PAGE_MODEL
  * 3. Structured data (JSON-LD)
  * 4. DOM elements
  */
 export function extractRightmoveData(): PropertyData | null {
-  // Try to get data from PAGE_MODEL first (most reliable)
-  const pageModelData = extractFromPageModel();
+  // Try to get data from PAGE_MODEL in script tags (most reliable)
+  const pageModelData = extractFromPageModelScript();
   if (pageModelData) {
-    console.log('[PlanScope] Extracted data from Rightmove PAGE_MODEL');
+    console.log('[PlanScope] Extracted data from Rightmove PAGE_MODEL script');
     return pageModelData;
   }
 
@@ -37,30 +37,54 @@ export function extractRightmoveData(): PropertyData | null {
 }
 
 /**
- * Extract from Rightmove's PAGE_MODEL global variable
+ * Extract PAGE_MODEL data from inline script tags
+ * Content scripts can't access window variables directly, but can read script contents
  */
-function extractFromPageModel(): PropertyData | null {
+function extractFromPageModelScript(): PropertyData | null {
   try {
-    // Rightmove exposes property data in window.PAGE_MODEL
-    const pageModel = (window as any).PAGE_MODEL;
+    // Find script tags that contain PAGE_MODEL
+    const scripts = document.querySelectorAll('script:not([src])');
 
-    if (!pageModel?.propertyData) {
-      return null;
+    for (const script of scripts) {
+      const content = script.textContent || '';
+
+      // Look for PAGE_MODEL assignment
+      if (content.includes('PAGE_MODEL')) {
+        // Try to extract the JSON object
+        const match = content.match(/window\.PAGE_MODEL\s*=\s*(\{[\s\S]*?\});?\s*(?:window\.|$|<)/);
+
+        if (match) {
+          try {
+            // Clean up the JSON string
+            let jsonStr = match[1];
+            // Remove trailing semicolons and whitespace
+            jsonStr = jsonStr.replace(/;\s*$/, '');
+
+            const pageModel = JSON.parse(jsonStr);
+
+            if (pageModel?.propertyData) {
+              const { propertyData } = pageModel;
+              const address = propertyData.address?.displayAddress || '';
+              const location = propertyData.location;
+
+              return {
+                address,
+                lat: location?.latitude ?? null,
+                lng: location?.longitude ?? null,
+                postcode: extractPostcode(address),
+              };
+            }
+          } catch (parseError) {
+            console.warn('[PlanScope] Failed to parse PAGE_MODEL JSON:', parseError);
+          }
+        }
+      }
     }
-
-    const { propertyData } = pageModel;
-    const address = propertyData.address?.displayAddress || '';
-    const location = propertyData.location;
-
-    return {
-      address,
-      lat: location?.latitude ?? null,
-      lng: location?.longitude ?? null,
-      postcode: extractPostcode(address),
-    };
-  } catch {
-    return null;
+  } catch (error) {
+    console.warn('[PlanScope] Error extracting PAGE_MODEL:', error);
   }
+
+  return null;
 }
 
 /**

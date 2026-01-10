@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(npx tsc:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(gh auth status:*)",
+      "Bash(gh repo create:*)",
+      "Bash(npm test)",
+      "Bash(npx vitest:*)",
+      "WebSearch",
+      "WebFetch(domain:www.planning.data.gov.uk)",
+      "WebFetch(domain:www.planit.org.uk)",
+      "WebFetch(domain:datasette.planning.data.gov.uk)",
+      "WebFetch(domain:cyipt.github.io)",
+      "WebFetch(domain:rdrr.io)",
+      "WebFetch(domain:github.com)",
+      "Bash(npm run build:*)",
+      "Bash(npm install:*)",
+      "Bash(curl:*)",
+      "Bash(findstr:*)",
+      "Bash(npx vercel --prod --yes)"
+    ]
+  }
+}

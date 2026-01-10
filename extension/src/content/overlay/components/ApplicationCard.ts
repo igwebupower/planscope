@@ -12,6 +12,16 @@ export function createApplicationCard(application: PlanningApplication): HTMLEle
   const statusClass = getStatusClass(application.status);
   const statusLabel = getStatusLabel(application.status);
 
+  const urlLink = application.url
+    ? `<a href="${escapeHtml(application.url)}" target="_blank" class="planscope-card-link">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M14 3.5V14H2V2h6.5V1H1.5A.5.5 0 001 1.5v13a.5.5 0 00.5.5h13a.5.5 0 00.5-.5V3.5a.5.5 0 00-.5-.5H14z"/>
+          <path d="M9 1V0h7v7h-1V2.41L8.35 9.06l-.71-.71L14.29 2H10V1h-1z"/>
+        </svg>
+        View application
+      </a>`
+    : '';
+
   card.innerHTML = `
     <div class="planscope-card-header">
       <span class="planscope-card-status ${statusClass}">
@@ -42,6 +52,7 @@ export function createApplicationCard(application: PlanningApplication): HTMLEle
         ${escapeHtml(application.id)}
       </span>
     </div>
+    ${urlLink}
   `;
 
   return card;

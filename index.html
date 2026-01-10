@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="PlanScope - Instant planning permission intelligence for UK property listings. See nearby applications, approval rates, and development potential while browsing Rightmove and Zoopla.">
-  <meta name="keywords" content="planning permission, UK property, Rightmove, Zoopla, property investment, planning applications, Chrome extension">
+  <meta name="description" content="PlanScope - Instant planning permission intelligence for UK property listings.">
   <meta property="og:title" content="PlanScope - Planning Intelligence for Property">
   <meta property="og:description" content="See planning permission data instantly while browsing UK property listings.">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
   <title>PlanScope — Planning Intelligence for UK Property</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,10 +22,9 @@
         <a href="#features">Features</a>
         <a href="#how-it-works">How it works</a>
         <a href="#pricing">Pricing</a>
-        <a href="https://chrome.google.com/webstore" class="btn btn-nav" target="_blank" rel="noopener">Add to Chrome</a>
       </div>
+      <a href="https://chrome.google.com/webstore" class="btn btn-primary" target="_blank" rel="noopener">Add to Chrome</a>
       <button class="nav-toggle" aria-label="Toggle menu">
-        <span></span>
         <span></span>
         <span></span>
       </button>
@@ -45,228 +41,207 @@
 
   <!-- Hero Section -->
   <section class="hero">
+    <div class="hero-bg"></div>
     <div class="container">
-      <div class="hero-content">
-        <h1 class="hero-title">Know before you buy.</h1>
+      <div class="hero-content" data-animate="fade-up">
+        <h1 class="hero-title">
+          Know what's <span class="text-gradient">possible</span><br>
+          before you buy
+        </h1>
         <p class="hero-subtitle">
-          PlanScope shows you planning permission data directly on Rightmove and Zoopla listings.
-          See what's been approved nearby, local authority approval rates, and potential development
-          restrictions — all without leaving the page.
+          Planning permission intelligence that appears automatically
+          on Rightmove and Zoopla. See approvals, restrictions, and
+          opportunities in seconds.
         </p>
-        <div class="hero-cta">
+        <div class="hero-actions">
           <a href="https://chrome.google.com/webstore" class="btn btn-primary btn-large" target="_blank" rel="noopener">
             Add to Chrome — Free
           </a>
-          <p class="hero-note">Works on Rightmove & Zoopla</p>
+          <span class="hero-note">No account needed</span>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="browser-mockup">
-          <div class="browser-header">
-            <div class="browser-dots">
-              <span></span>
-              <span></span>
-              <span></span>
+
+      <div class="hero-visual" data-animate="fade-up" data-delay="200">
+        <div class="floating-card card-main">
+          <div class="card-browser">
+            <div class="browser-bar">
+              <div class="browser-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="browser-url">rightmove.co.uk/properties/142857923</div>
             </div>
-            <div class="browser-url">zoopla.co.uk/for-sale/details/12345678</div>
-          </div>
-          <div class="browser-content">
-            <div class="mockup-property">
-              <div class="mockup-image"></div>
-              <div class="mockup-details">
-                <div class="mockup-price">£425,000</div>
-                <div class="mockup-address">3 bed semi-detached house</div>
-              </div>
-            </div>
-            <div class="mockup-overlay">
-              <div class="overlay-header">
-                <span class="overlay-title">PlanScope</span>
-                <span class="overlay-badge">12 applications</span>
-              </div>
-              <div class="overlay-stat">
-                <span class="stat-label">Approval Rate</span>
-                <span class="stat-value stat-positive">87%</span>
-              </div>
-              <div class="overlay-stat">
-                <span class="stat-label">Avg. Decision Time</span>
-                <span class="stat-value">8 weeks</span>
-              </div>
-              <div class="overlay-stat">
-                <span class="stat-label">Planning Climate</span>
-                <span class="stat-value stat-positive">Pro-development</span>
-              </div>
-              <div class="overlay-applications">
-                <div class="app-item app-approved">
-                  <span class="app-type">Rear Extension</span>
-                  <span class="app-status">Approved</span>
-                </div>
-                <div class="app-item app-approved">
-                  <span class="app-type">Loft Conversion</span>
-                  <span class="app-status">Approved</span>
-                </div>
-                <div class="app-item app-pending">
-                  <span class="app-type">Side Extension</span>
-                  <span class="app-status">Pending</span>
+            <div class="browser-body">
+              <div class="property-preview">
+                <div class="property-image"></div>
+                <div class="property-info">
+                  <span class="property-price">£485,000</span>
+                  <span class="property-type">4 bed detached house</span>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="floating-card card-overlay" data-animate="float">
+          <div class="overlay-header">
+            <span class="overlay-logo">PlanScope</span>
+            <span class="overlay-badge">Live</span>
+          </div>
+          <div class="overlay-stats">
+            <div class="stat-row">
+              <span class="stat-label">Approval Rate</span>
+              <span class="stat-value positive">91%</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Nearby Applications</span>
+              <span class="stat-value">14</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Avg. Decision</span>
+              <span class="stat-value">7 weeks</span>
+            </div>
+          </div>
+          <div class="overlay-tags">
+            <span class="tag tag-success">Extensions Welcome</span>
+            <span class="tag tag-neutral">No Conservation Area</span>
+          </div>
+        </div>
+
+        <div class="floating-card card-notification" data-animate="float" data-delay="400">
+          <span class="notif-icon">✓</span>
+          <span class="notif-text">Loft conversion approved nearby</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Trust Bar -->
-  <section class="trust-bar">
+  <!-- Logos/Trust -->
+  <section class="trust" data-animate="fade-up">
     <div class="container">
-      <p class="trust-text">Trusted by property investors and homebuyers across the UK</p>
-      <div class="trust-stats">
-        <div class="trust-stat">
-          <span class="trust-number">50,000+</span>
-          <span class="trust-label">Properties analysed</span>
+      <p class="trust-label">Trusted by property buyers across the UK</p>
+      <div class="trust-numbers">
+        <div class="trust-item">
+          <span class="trust-value">50k+</span>
+          <span class="trust-desc">Properties checked</span>
         </div>
-        <div class="trust-stat">
-          <span class="trust-number">2M+</span>
-          <span class="trust-label">Planning records</span>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <span class="trust-value">2M+</span>
+          <span class="trust-desc">Planning records</span>
         </div>
-        <div class="trust-stat">
-          <span class="trust-number">380</span>
-          <span class="trust-label">Local authorities</span>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <span class="trust-value">380</span>
+          <span class="trust-desc">Local authorities</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Problem Section -->
+  <!-- Problem/Solution -->
   <section class="problem">
     <div class="container">
-      <div class="problem-content">
-        <h2 class="section-title">The hidden cost of not knowing</h2>
-        <p class="section-text">
-          Most property buyers discover planning issues after they've made an offer.
-          Conservation areas, listed building restrictions, or a neighbour's refused
-          extension can significantly impact what you can do with a property — and its value.
+      <div class="problem-content" data-animate="fade-up">
+        <span class="section-label">The Problem</span>
+        <h2 class="section-title">
+          Most buyers discover planning issues <span class="text-gradient">after</span> making an offer
+        </h2>
+        <p class="section-desc">
+          Conservation areas, refused extensions, restrictive covenants — these details
+          are buried in council websites, taking hours to research. By then, you've
+          already fallen in love with the property.
         </p>
-        <div class="problem-points">
-          <div class="problem-point">
-            <span class="point-marker"></span>
-            <div class="point-content">
-              <strong>Time wasted</strong> on properties with restrictive planning histories
-            </div>
-          </div>
-          <div class="problem-point">
-            <span class="point-marker"></span>
-            <div class="point-content">
-              <strong>Missed opportunities</strong> in areas with high approval rates
-            </div>
-          </div>
-          <div class="problem-point">
-            <span class="point-marker"></span>
-            <div class="point-content">
-              <strong>Costly surprises</strong> after exchange when planning issues surface
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- Features Section -->
+  <!-- Features -->
   <section id="features" class="features">
+    <div class="features-bg"></div>
     <div class="container">
-      <h2 class="section-title center">Everything you need to know, in one place</h2>
-      <p class="section-text center">PlanScope surfaces the data that matters, right when you need it.</p>
+      <div class="features-header" data-animate="fade-up">
+        <span class="section-label">Features</span>
+        <h2 class="section-title">Everything surfaces <span class="text-gradient">automatically</span></h2>
+      </div>
 
       <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-number">01</div>
-          <h3 class="feature-title">Nearby Applications</h3>
-          <p class="feature-text">
-            See every planning application within 500m of the property. Filter by status,
-            type, and date. Understand what developments are happening in the area.
-          </p>
+        <div class="feature-card" data-animate="fade-up">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <h3>Instant Analysis</h3>
+          <p>Data loads in under 2 seconds. No clicking, no searching — it just appears alongside the listing.</p>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-number">02</div>
-          <h3 class="feature-title">Local Authority Insights</h3>
-          <p class="feature-text">
-            Approval rates, average decision times, and planning climate for each council.
-            Know whether you're buying in an area that welcomes development.
-          </p>
+        <div class="feature-card" data-animate="fade-up" data-delay="100">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <h3>Nearby Applications</h3>
+          <p>See every planning application within 500m. Filter by type, status, and date to spot patterns.</p>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-number">03</div>
-          <h3 class="feature-title">Planning Constraints</h3>
-          <p class="feature-text">
-            Conservation areas, listed buildings, green belt, flood zones, and Article 4
-            directions. Critical restrictions flagged before you fall in love with a property.
-          </p>
+        <div class="feature-card" data-animate="fade-up" data-delay="200">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3>Approval Insights</h3>
+          <p>Local authority approval rates and decision times. Know if you're buying in a pro-development area.</p>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-number">04</div>
-          <h3 class="feature-title">Smart Analysis</h3>
-          <p class="feature-text">
-            Our algorithms identify patterns and flag opportunities. High approval rates
-            for extensions? Many loft conversions nearby? We'll tell you.
-          </p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-number">05</div>
-          <h3 class="feature-title">Works Offline</h3>
-          <p class="feature-text">
-            Data is cached locally so you can review properties even without an internet
-            connection. Perfect for viewings when mobile signal is patchy.
-          </p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-number">06</div>
-          <h3 class="feature-title">Privacy First</h3>
-          <p class="feature-text">
-            We don't track your browsing history or sell your data. The extension only
-            activates on property listing pages. Your searches stay private.
-          </p>
+        <div class="feature-card" data-animate="fade-up" data-delay="300">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Constraint Flags</h3>
+          <p>Conservation areas, listed buildings, flood zones, Article 4 — critical restrictions flagged instantly.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- How It Works -->
+  <!-- How it Works -->
   <section id="how-it-works" class="how-it-works">
     <div class="container">
-      <h2 class="section-title center">Up and running in 30 seconds</h2>
+      <div class="how-header" data-animate="fade-up">
+        <span class="section-label">How it works</span>
+        <h2 class="section-title">Up and running in <span class="text-gradient">30 seconds</span></h2>
+      </div>
 
       <div class="steps">
-        <div class="step">
+        <div class="step" data-animate="fade-up">
           <div class="step-number">1</div>
-          <h3 class="step-title">Install the extension</h3>
-          <p class="step-text">
-            Click "Add to Chrome" and confirm. No account required, no setup needed.
-          </p>
+          <div class="step-content">
+            <h3>Install the extension</h3>
+            <p>One click from the Chrome Web Store. No account, no setup.</p>
+          </div>
         </div>
 
-        <div class="step-connector"></div>
-
-        <div class="step">
+        <div class="step" data-animate="fade-up" data-delay="150">
           <div class="step-number">2</div>
-          <h3 class="step-title">Browse property listings</h3>
-          <p class="step-text">
-            Visit Rightmove or Zoopla and open any property listing as you normally would.
-          </p>
+          <div class="step-content">
+            <h3>Browse properties</h3>
+            <p>Visit Rightmove or Zoopla as you normally would.</p>
+          </div>
         </div>
 
-        <div class="step-connector"></div>
-
-        <div class="step">
+        <div class="step" data-animate="fade-up" data-delay="300">
           <div class="step-number">3</div>
-          <h3 class="step-title">See the full picture</h3>
-          <p class="step-text">
-            PlanScope automatically shows planning data in a panel alongside the listing.
-          </p>
+          <div class="step-content">
+            <h3>See the full picture</h3>
+            <p>Planning data appears automatically on every listing.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -274,42 +249,35 @@
 
   <!-- Testimonials -->
   <section class="testimonials">
+    <div class="testimonials-bg"></div>
     <div class="container">
-      <h2 class="section-title center">What property buyers say</h2>
+      <div class="testimonials-header" data-animate="fade-up">
+        <span class="section-label">Testimonials</span>
+        <h2 class="section-title">Buyers love the <span class="text-gradient">clarity</span></h2>
+      </div>
 
       <div class="testimonials-grid">
-        <blockquote class="testimonial">
-          <p class="testimonial-text">
-            Found out the property I was about to offer on was in a conservation area.
-            The extension I had planned would never have been approved. Saved me months
-            of heartache.
-          </p>
-          <footer class="testimonial-author">
-            <span class="author-name">Sarah M.</span>
-            <span class="author-role">First-time buyer, Bristol</span>
+        <blockquote class="testimonial-card" data-animate="fade-up">
+          <p>Found out the property was in a conservation area before I wasted time on viewings. The extension I'd planned would never have been approved.</p>
+          <footer>
+            <strong>Sarah M.</strong>
+            <span>First-time buyer, Bristol</span>
           </footer>
         </blockquote>
 
-        <blockquote class="testimonial">
-          <p class="testimonial-text">
-            I specifically look for areas with high approval rates now. PlanScope helped
-            me find a property where I knew my loft conversion would likely get approved.
-            It was.
-          </p>
-          <footer class="testimonial-author">
-            <span class="author-name">James T.</span>
-            <span class="author-role">Property investor, Manchester</span>
+        <blockquote class="testimonial-card" data-animate="fade-up" data-delay="100">
+          <p>I specifically look for areas with high approval rates now. PlanScope helped me find a property where my loft conversion got approved first time.</p>
+          <footer>
+            <strong>James T.</strong>
+            <span>Property investor, Manchester</span>
           </footer>
         </blockquote>
 
-        <blockquote class="testimonial">
-          <p class="testimonial-text">
-            The nearby applications feature is gold. You can see exactly what the council
-            has approved in the street. No more guessing whether that extension is realistic.
-          </p>
-          <footer class="testimonial-author">
-            <span class="author-name">David & Emma K.</span>
-            <span class="author-role">Homeowners, London</span>
+        <blockquote class="testimonial-card" data-animate="fade-up" data-delay="200">
+          <p>The nearby applications feature is gold. You can see exactly what the council has approved on your street. No more guessing.</p>
+          <footer>
+            <strong>David K.</strong>
+            <span>Homeowner, London</span>
           </footer>
         </blockquote>
       </div>
@@ -319,61 +287,55 @@
   <!-- Pricing -->
   <section id="pricing" class="pricing">
     <div class="container">
-      <h2 class="section-title center">Simple, transparent pricing</h2>
-      <p class="section-text center">Start free. Upgrade when you need more.</p>
+      <div class="pricing-header" data-animate="fade-up">
+        <span class="section-label">Pricing</span>
+        <h2 class="section-title">Start free, upgrade <span class="text-gradient">when ready</span></h2>
+      </div>
 
       <div class="pricing-cards">
-        <div class="pricing-card">
-          <div class="pricing-header">
-            <h3 class="pricing-name">Free</h3>
-            <div class="pricing-price">
-              <span class="price-amount">£0</span>
-              <span class="price-period">forever</span>
-            </div>
+        <div class="pricing-card" data-animate="fade-up">
+          <div class="pricing-tier">Free</div>
+          <div class="pricing-amount">
+            <span class="price">£0</span>
+            <span class="period">forever</span>
           </div>
           <ul class="pricing-features">
-            <li>10 property lookups per month</li>
-            <li>Nearby planning applications</li>
-            <li>Local authority approval rates</li>
-            <li>Basic planning constraints</li>
+            <li>10 lookups per month</li>
+            <li>Nearby applications</li>
+            <li>Approval rates</li>
+            <li>Basic constraints</li>
           </ul>
-          <a href="https://chrome.google.com/webstore" class="btn btn-secondary" target="_blank" rel="noopener">Get Started</a>
+          <a href="https://chrome.google.com/webstore" class="btn btn-secondary" target="_blank">Get Started</a>
         </div>
 
-        <div class="pricing-card pricing-featured">
-          <div class="pricing-badge">Most popular</div>
-          <div class="pricing-header">
-            <h3 class="pricing-name">Pro</h3>
-            <div class="pricing-price">
-              <span class="price-amount">£9</span>
-              <span class="price-period">per month</span>
-            </div>
+        <div class="pricing-card featured" data-animate="fade-up" data-delay="100">
+          <div class="pricing-popular">Most popular</div>
+          <div class="pricing-tier">Pro</div>
+          <div class="pricing-amount">
+            <span class="price">£9</span>
+            <span class="period">per month</span>
           </div>
           <ul class="pricing-features">
-            <li>Unlimited property lookups</li>
-            <li>All planning constraints</li>
-            <li>Smart analysis & insights</li>
+            <li>Unlimited lookups</li>
+            <li>All constraints</li>
+            <li>Smart insights</li>
             <li>Offline access</li>
-            <li>Priority data updates</li>
-            <li>Email support</li>
+            <li>Priority support</li>
           </ul>
-          <a href="https://chrome.google.com/webstore" class="btn btn-primary" target="_blank" rel="noopener">Start Free Trial</a>
+          <a href="https://chrome.google.com/webstore" class="btn btn-primary" target="_blank">Start Free Trial</a>
         </div>
 
-        <div class="pricing-card">
-          <div class="pricing-header">
-            <h3 class="pricing-name">Team</h3>
-            <div class="pricing-price">
-              <span class="price-amount">£29</span>
-              <span class="price-period">per month</span>
-            </div>
+        <div class="pricing-card" data-animate="fade-up" data-delay="200">
+          <div class="pricing-tier">Team</div>
+          <div class="pricing-amount">
+            <span class="price">£29</span>
+            <span class="period">per month</span>
           </div>
           <ul class="pricing-features">
             <li>Everything in Pro</li>
-            <li>Up to 5 team members</li>
-            <li>Shared saved searches</li>
+            <li>Up to 5 members</li>
+            <li>Shared searches</li>
             <li>API access</li>
-            <li>Priority support</li>
           </ul>
           <a href="mailto:hello@planscope.uk" class="btn btn-secondary">Contact Us</a>
         </div>
@@ -382,89 +344,88 @@
   </section>
 
   <!-- Final CTA -->
-  <section class="final-cta">
+  <section class="cta">
+    <div class="cta-bg"></div>
     <div class="container">
-      <h2 class="cta-title">Make informed property decisions</h2>
-      <p class="cta-text">
-        Join thousands of UK property buyers who research smarter with PlanScope.
-      </p>
-      <a href="https://chrome.google.com/webstore" class="btn btn-primary btn-large" target="_blank" rel="noopener">
-        Add to Chrome — Free
-      </a>
-      <p class="cta-note">Free forever. No credit card required.</p>
+      <div class="cta-content" data-animate="fade-up">
+        <h2>Make informed decisions</h2>
+        <p>Join thousands of UK property buyers who research smarter.</p>
+        <a href="https://chrome.google.com/webstore" class="btn btn-white btn-large" target="_blank" rel="noopener">
+          Add to Chrome — Free
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-main">
         <div class="footer-brand">
           <a href="/" class="footer-logo">PlanScope</a>
-          <p class="footer-tagline">Planning intelligence for property buyers.</p>
+          <p>Planning intelligence for UK property buyers.</p>
         </div>
-
         <div class="footer-links">
-          <h4 class="footer-heading">Product</h4>
-          <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#how-it-works">How it works</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-links">
-          <h4 class="footer-heading">Support</h4>
-          <ul>
-            <li><a href="mailto:hello@planscope.uk">Contact</a></li>
-            <li><a href="/help">Help Centre</a></li>
-            <li><a href="/status">System Status</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-links">
-          <h4 class="footer-heading">Legal</h4>
-          <ul>
-            <li><a href="/privacy">Privacy Policy</a></li>
-            <li><a href="/terms">Terms of Service</a></li>
-            <li><a href="/cookies">Cookie Policy</a></li>
-          </ul>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#how-it-works">How it works</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/cookies">Cookies</a>
+          </div>
+          <div class="footer-col">
+            <h4>Support</h4>
+            <a href="mailto:hello@planscope.uk">Contact</a>
+          </div>
         </div>
       </div>
-
       <div class="footer-bottom">
-        <p class="footer-copyright">© 2025 PlanScope. All rights reserved.</p>
-        <p class="footer-data">Planning data provided by <a href="https://planit.org.uk" target="_blank" rel="noopener">PlanIt</a> and <a href="https://planning.data.gov.uk" target="_blank" rel="noopener">Planning Data</a>.</p>
+        <p class="copyright"></p>
+        <p class="credits">Data from <a href="https://planit.org.uk" target="_blank">PlanIt</a></p>
       </div>
     </div>
   </footer>
 
   <!-- Cookie Banner -->
   <div class="cookie-banner" id="cookieBanner">
-    <div class="cookie-content">
-      <p class="cookie-text">
-        We use cookies to improve your experience and analyse site usage.
-        <a href="/cookies">Learn more</a>
-      </p>
-      <div class="cookie-actions">
-        <button class="btn btn-secondary btn-cookie" id="cookieReject">Reject</button>
-        <button class="btn btn-primary btn-cookie" id="cookieAccept">Accept</button>
-      </div>
+    <p>We use cookies to improve your experience. <a href="/cookies">Learn more</a></p>
+    <div class="cookie-actions">
+      <button class="btn-cookie" id="cookieReject">Reject</button>
+      <button class="btn-cookie primary" id="cookieAccept">Accept</button>
     </div>
   </div>
 
   <script>
-    // Mobile menu toggle
+    // Intersection Observer for animations
+    const animateElements = document.querySelectorAll('[data-animate]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => {
+            entry.target.classList.add('animated');
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    animateElements.forEach(el => observer.observe(el));
+
+    // Mobile menu
     const navToggle = document.querySelector('.nav-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
-    const nav = document.querySelector('.nav');
 
     navToggle.addEventListener('click', () => {
       mobileMenu.classList.toggle('active');
       navToggle.classList.toggle('active');
     });
 
-    // Close mobile menu when clicking a link
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
@@ -472,25 +433,19 @@
       });
     });
 
-    // Navbar background on scroll
+    // Navbar scroll
+    const nav = document.querySelector('.nav');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
+      nav.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Smooth scroll for anchor links
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
@@ -505,22 +460,15 @@
       cookieBanner.classList.remove('visible');
     }
 
-    function checkCookieConsent() {
-      const consent = localStorage.getItem('planscope-cookies');
-      if (!consent) {
-        setTimeout(() => {
-          cookieBanner.classList.add('visible');
-        }, 1000);
-      }
+    if (!localStorage.getItem('planscope-cookies')) {
+      setTimeout(() => cookieBanner.classList.add('visible'), 2000);
     }
 
     cookieAccept.addEventListener('click', () => setCookieConsent('accepted'));
     cookieReject.addEventListener('click', () => setCookieConsent('rejected'));
-    checkCookieConsent();
 
-    // Dynamic footer year
-    document.querySelector('.footer-copyright').textContent =
-      `© ${new Date().getFullYear()} PlanScope. All rights reserved.`;
+    // Footer year
+    document.querySelector('.copyright').textContent = `© ${new Date().getFullYear()} PlanScope`;
   </script>
 </body>
 </html>

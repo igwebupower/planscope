@@ -5,7 +5,7 @@ import { extractZooplaData } from './zoopla';
 // URL patterns for supported property listing sites
 const SITE_PATTERNS: Record<SupportedSite, RegExp> = {
   rightmove: /rightmove\.co\.uk\/properties\/\d+/,
-  zoopla: /zoopla\.co\.uk\/(for-sale|to-rent)\/details\/\d+/,
+  zoopla: /zoopla\.co\.uk\/(for-sale|to-rent|new-homes)\/details\/\d+/,
   unknown: /^$/,
 };
 

@@ -7,6 +7,10 @@
   "host_permissions": [
     "https://www.rightmove.co.uk/*",
     "https://www.zoopla.co.uk/*",
+    "https://www.planit.org.uk/*",
+    "https://www.planning.data.gov.uk/*",
+    "https://api.postcodes.io/*",
+    "https://nominatim.openstreetmap.org/*",
     "http://localhost:3000/*"
   ],
   "content_scripts": [
@@ -14,15 +18,15 @@
       "matches": [
         "https://www.rightmove.co.uk/properties/*",
         "https://www.zoopla.co.uk/for-sale/details/*",
-        "https://www.zoopla.co.uk/to-rent/details/*"
+        "https://www.zoopla.co.uk/to-rent/details/*",
+        "https://www.zoopla.co.uk/new-homes/details/*"
       ],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
   ],
   "background": {
-    "service_worker": "background.js",
-    "type": "module"
+    "service_worker": "background.js"
   },
   "action": {
     "default_popup": "src/popup/index.html",

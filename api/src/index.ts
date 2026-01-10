@@ -3,7 +3,6 @@ import cors from 'cors';
 import { planningRouter } from './routes/planning.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
@@ -17,8 +16,15 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`PlanScope API running on http://localhost:${PORT}`);
-  console.log(`Planning endpoint: http://localhost:${PORT}/planning-applications`);
-});
+// Export app for testing
+export { app };
+
+// Start server only if this is the main module
+const PORT = process.env.PORT || 3000;
+
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`PlanScope API running on http://localhost:${PORT}`);
+    console.log(`Planning endpoint: http://localhost:${PORT}/planning-applications`);
+  });
+}

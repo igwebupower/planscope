@@ -402,5 +402,405 @@ export function getOverlayStyles(): string {
     .planscope-body::-webkit-scrollbar-thumb:hover {
       background: #9ca3af;
     }
+
+    /* Constraints */
+    .planscope-constraints {
+      padding: 12px 16px;
+      background: #faf5ff;
+      border-bottom: 1px solid #e9d5ff;
+    }
+
+    .planscope-constraints-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .planscope-constraints-title {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #6b7280;
+    }
+
+    .planscope-constraints-count {
+      font-size: 11px;
+      color: #8b5cf6;
+      font-weight: 500;
+    }
+
+    .planscope-constraints-empty {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #9ca3af;
+      font-size: 13px;
+    }
+
+    .planscope-constraints-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .planscope-constraint-group {
+      background: white;
+      border-radius: 6px;
+      padding: 8px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .planscope-constraint-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .planscope-constraint-icon {
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .planscope-constraint-label {
+      flex: 1;
+    }
+
+    .planscope-constraint-count {
+      background: rgba(255, 255, 255, 0.25);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 10px;
+    }
+
+    .planscope-constraint-details {
+      padding-left: 4px;
+    }
+
+    .planscope-constraint-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+      font-size: 12px;
+      color: #4b5563;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .planscope-constraint-item:last-child {
+      border-bottom: none;
+    }
+
+    .planscope-constraint-name {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .planscope-constraint-grade {
+      background: #fef3c7;
+      color: #92400e;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .planscope-constraint-link {
+      color: #6366f1;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .planscope-constraint-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Compact constraint badges */
+    .planscope-constraint-badges {
+      display: flex;
+      gap: 4px;
+      margin-left: 8px;
+    }
+
+    .planscope-badge-mini {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    /* Application URL Link */
+    .planscope-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #6366f1;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      margin-top: 8px;
+    }
+
+    .planscope-card-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Skeleton Loaders */
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    .planscope-skeleton {
+      background: linear-gradient(
+        90deg,
+        #f3f4f6 25%,
+        #e5e7eb 50%,
+        #f3f4f6 75%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 4px;
+    }
+
+    .planscope-skeleton-loading {
+      padding: 16px;
+    }
+
+    .planscope-skeleton-climate {
+      padding: 16px;
+      background: #f9fafb;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .planscope-skeleton-title {
+      height: 12px;
+      width: 120px;
+      margin-bottom: 12px;
+    }
+
+    .planscope-skeleton-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .planscope-skeleton-stat {
+      background: white;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .planscope-skeleton-label {
+      height: 10px;
+      width: 60%;
+      margin-bottom: 8px;
+    }
+
+    .planscope-skeleton-value {
+      height: 20px;
+      width: 40%;
+    }
+
+    .planscope-skeleton-filters {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      gap: 8px;
+    }
+
+    .planscope-skeleton-filter {
+      height: 28px;
+      width: 60px;
+      border-radius: 16px;
+    }
+
+    .planscope-skeleton-list {
+      padding: 8px;
+    }
+
+    .planscope-skeleton-card {
+      padding: 12px;
+      margin-bottom: 8px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+    }
+
+    .planscope-skeleton-card-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .planscope-skeleton-status {
+      height: 22px;
+      width: 70px;
+      border-radius: 4px;
+    }
+
+    .planscope-skeleton-distance {
+      height: 14px;
+      width: 40px;
+    }
+
+    .planscope-skeleton-address {
+      height: 16px;
+      width: 80%;
+      margin-bottom: 8px;
+    }
+
+    .planscope-skeleton-summary {
+      height: 12px;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+
+    .planscope-skeleton-summary-short {
+      height: 12px;
+      width: 60%;
+    }
+
+    /* Enhanced Error States */
+    .planscope-error {
+      padding: 24px 16px;
+      text-align: center;
+      background: #fef2f2;
+      border-bottom: 1px solid #fecaca;
+    }
+
+    .planscope-error-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 12px;
+      background: #fee2e2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #dc2626;
+      font-size: 24px;
+    }
+
+    .planscope-error-title {
+      font-weight: 600;
+      color: #991b1b;
+      margin-bottom: 4px;
+    }
+
+    .planscope-error-message {
+      font-size: 13px;
+      color: #b91c1c;
+      margin-bottom: 16px;
+    }
+
+    .planscope-error-retry {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #dc2626;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .planscope-error-retry:hover {
+      background: #b91c1c;
+    }
+
+    /* Offline Banner */
+    .planscope-offline-banner {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: #fef3c7;
+      border-bottom: 1px solid #fde68a;
+      font-size: 12px;
+      color: #92400e;
+    }
+
+    .planscope-offline-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* Cache Indicator */
+    .planscope-cache-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      background: #dbeafe;
+      color: #1e40af;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 500;
+      margin-left: 8px;
+    }
+
+    /* Rate Limit Warning */
+    .planscope-rate-limit {
+      padding: 16px;
+      background: #fff7ed;
+      border-bottom: 1px solid #fed7aa;
+      text-align: center;
+    }
+
+    .planscope-rate-limit-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .planscope-rate-limit-title {
+      font-weight: 600;
+      color: #c2410c;
+      margin-bottom: 4px;
+    }
+
+    .planscope-rate-limit-message {
+      font-size: 13px;
+      color: #ea580c;
+    }
+
+    .planscope-rate-limit-timer {
+      font-weight: 600;
+      font-size: 18px;
+      color: #c2410c;
+      margin-top: 8px;
+    }
   `;
 }

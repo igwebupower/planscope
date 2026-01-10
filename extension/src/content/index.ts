@@ -3,8 +3,92 @@
 
 import { detectSite, extractPropertyData } from './sites/detector';
 import { createOverlay } from './overlay/Overlay';
-import { fetchPlanningData } from '../services/api';
 import type { OverlayState, PlanningResponse } from '../types';
+
+/**
+ * Send message to background script and wait for response
+ */
+function sendMessage<T>(message: any): Promise<T> {
+  return new Promise((resolve, reject) => {
+    chrome.runtime.sendMessage(message, (response) => {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+        return;
+      }
+      resolve(response);
+    });
+  });
+}
+
+/**
+ * Fetch planning data via background script
+ */
+async function fetchPlanningDataViaBackground(
+  lat: number,
+  lng: number,
+  radiusM: number = 500
+): Promise<PlanningResponse> {
+  const response = await sendMessage<{
+    success: boolean;
+    data?: PlanningResponse;
+    error?: { message: string; userMessage: string; code: string; retryable: boolean };
+  }>({
+    type: 'FETCH_PLANNING_DATA',
+    lat,
+    lng,
+    radiusM,
+  });
+
+  if (!response.success) {
+    const error = new Error(response.error?.message || 'Unknown error');
+    (error as any).userMessage = response.error?.userMessage || 'An unexpected error occurred.';
+    (error as any).code = response.error?.code;
+    (error as any).retryable = response.error?.retryable;
+    throw error;
+  }
+
+  return response.data!;
+}
+
+/**
+ * Geocode postcode via background script
+ */
+async function geocodePostcodeViaBackground(postcode: string): Promise<{ lat: number; lng: number } | null> {
+  const response = await sendMessage<{
+    success: boolean;
+    data?: { lat: number; lng: number; displayName: string };
+    error?: string;
+  }>({
+    type: 'GEOCODE_POSTCODE',
+    postcode,
+  });
+
+  if (!response.success || !response.data) {
+    return null;
+  }
+
+  return { lat: response.data.lat, lng: response.data.lng };
+}
+
+/**
+ * Geocode address via background script
+ */
+async function geocodeAddressViaBackground(address: string): Promise<{ lat: number; lng: number } | null> {
+  const response = await sendMessage<{
+    success: boolean;
+    data?: { lat: number; lng: number; displayName: string };
+    error?: string;
+  }>({
+    type: 'GEOCODE_ADDRESS',
+    address,
+  });
+
+  if (!response.success || !response.data) {
+    return null;
+  }
+
+  return { lat: response.data.lat, lng: response.data.lng };
+}
 
 console.log('[PlanScope] Content script loaded');
 
@@ -20,14 +104,50 @@ async function init(): Promise<void> {
   console.log(`[PlanScope] Detected site: ${site}`);
 
   // Extract property data from the page
-  const propertyData = extractPropertyData(site);
+  let propertyData = extractPropertyData(site);
 
   if (!propertyData) {
     console.warn('[PlanScope] Could not extract property data from page');
     return;
   }
 
-  console.log('[PlanScope] Property data:', propertyData);
+  console.log('[PlanScope] Property data:', JSON.stringify(propertyData));
+
+  // If we have a postcode but no coordinates, try geocoding via background script
+  if ((!propertyData.lat || !propertyData.lng) && propertyData.postcode) {
+    console.log('[PlanScope] Missing coordinates, attempting to geocode postcode:', propertyData.postcode);
+    try {
+      const geocodeResult = await geocodePostcodeViaBackground(propertyData.postcode);
+      if (geocodeResult) {
+        propertyData = {
+          ...propertyData,
+          lat: geocodeResult.lat,
+          lng: geocodeResult.lng,
+        };
+        console.log('[PlanScope] Geocoded postcode successfully:', geocodeResult);
+      }
+    } catch (error) {
+      console.warn('[PlanScope] Postcode geocoding failed:', error);
+    }
+  }
+
+  // If still no coordinates but have an address, try geocoding the address via background script
+  if ((!propertyData.lat || !propertyData.lng) && propertyData.address) {
+    console.log('[PlanScope] Attempting to geocode address:', propertyData.address);
+    try {
+      const geocodeResult = await geocodeAddressViaBackground(propertyData.address);
+      if (geocodeResult) {
+        propertyData = {
+          ...propertyData,
+          lat: geocodeResult.lat,
+          lng: geocodeResult.lng,
+        };
+        console.log('[PlanScope] Geocoded address successfully:', geocodeResult);
+      }
+    } catch (error) {
+      console.warn('[PlanScope] Address geocoding failed:', error);
+    }
+  }
 
   // Initialize overlay state
   const state: OverlayState = {
@@ -55,10 +175,10 @@ async function init(): Promise<void> {
     },
   });
 
-  // Fetch planning data
+  // Fetch planning data via background script
   if (propertyData.lat && propertyData.lng) {
     try {
-      const data: PlanningResponse = await fetchPlanningData(
+      const data: PlanningResponse = await fetchPlanningDataViaBackground(
         propertyData.lat,
         propertyData.lng,
         500 // 500m radius
@@ -71,15 +191,17 @@ async function init(): Promise<void> {
       console.log('[PlanScope] Planning data loaded:', data);
     } catch (error) {
       state.isLoading = false;
-      state.error = error instanceof Error ? error.message : 'Failed to load planning data';
+      // Use user-friendly error message
+      state.error = (error as any).userMessage || 'An unexpected error occurred. Please try again.';
       overlay.update(state);
 
       console.error('[PlanScope] Failed to fetch planning data:', error);
     }
   } else {
     state.isLoading = false;
-    state.error = 'Could not determine property location';
+    state.error = `Could not determine property location. Address: ${propertyData.address || 'unknown'}, Lat: ${propertyData.lat}, Lng: ${propertyData.lng}`;
     overlay.update(state);
+    console.warn('[PlanScope] Missing coordinates:', propertyData);
   }
 }
 

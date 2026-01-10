@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PlanScope - Instant planning permission intelligence for UK property listings. See nearby applications, approval rates, and development potential while browsing Rightmove and Zoopla.">
+  <meta name="keywords" content="planning permission, UK property, Rightmove, Zoopla, property investment, planning applications, Chrome extension">
+  <meta property="og:title" content="PlanScope - Planning Intelligence for Property">
+  <meta property="og:description" content="See planning permission data instantly while browsing UK property listings.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>PlanScope — Planning Intelligence for UK Property</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A6B6E'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='system-ui' font-weight='600' font-size='18' fill='white'%3EP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">PlanScope</a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="https://chrome.google.com/webstore" class="btn btn-nav" target="_blank" rel="noopener">Add to Chrome</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="#features">Features</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="https://chrome.google.com/webstore" class="btn btn-primary" target="_blank" rel="noopener">Add to Chrome</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Know before you buy.</h1>
+        <p class="hero-subtitle">
+          PlanScope shows you planning permission data directly on Rightmove and Zoopla listings.
+          See what's been approved nearby, local authority approval rates, and potential development
+          restrictions — all without leaving the page.
+        </p>
+        <div class="hero-cta">
+          <a href="https://chrome.google.com/webstore" class="btn btn-primary btn-large" target="_blank" rel="noopener">
+            Add to Chrome — Free
+          </a>
+          <p class="hero-note">Works on Rightmove & Zoopla</p>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="browser-mockup">
+          <div class="browser-header">
+            <div class="browser-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="browser-url">zoopla.co.uk/for-sale/details/12345678</div>
+          </div>
+          <div class="browser-content">
+            <div class="mockup-property">
+              <div class="mockup-image"></div>
+              <div class="mockup-details">
+                <div class="mockup-price">£425,000</div>
+                <div class="mockup-address">3 bed semi-detached house</div>
+              </div>
+            </div>
+            <div class="mockup-overlay">
+              <div class="overlay-header">
+                <span class="overlay-title">PlanScope</span>
+                <span class="overlay-badge">12 applications</span>
+              </div>
+              <div class="overlay-stat">
+                <span class="stat-label">Approval Rate</span>
+                <span class="stat-value stat-positive">87%</span>
+              </div>
+              <div class="overlay-stat">
+                <span class="stat-label">Avg. Decision Time</span>
+                <span class="stat-value">8 weeks</span>
+              </div>
+              <div class="overlay-stat">
+                <span class="stat-label">Planning Climate</span>
+                <span class="stat-value stat-positive">Pro-development</span>
+              </div>
+              <div class="overlay-applications">
+                <div class="app-item app-approved">
+                  <span class="app-type">Rear Extension</span>
+                  <span class="app-status">Approved</span>
+                </div>
+                <div class="app-item app-approved">
+                  <span class="app-type">Loft Conversion</span>
+                  <span class="app-status">Approved</span>
+                </div>
+                <div class="app-item app-pending">
+                  <span class="app-type">Side Extension</span>
+                  <span class="app-status">Pending</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <section class="trust-bar">
+    <div class="container">
+      <p class="trust-text">Trusted by property investors and homebuyers across the UK</p>
+      <div class="trust-stats">
+        <div class="trust-stat">
+          <span class="trust-number">50,000+</span>
+          <span class="trust-label">Properties analysed</span>
+        </div>
+        <div class="trust-stat">
+          <span class="trust-number">2M+</span>
+          <span class="trust-label">Planning records</span>
+        </div>
+        <div class="trust-stat">
+          <span class="trust-number">380</span>
+          <span class="trust-label">Local authorities</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="problem">
+    <div class="container">
+      <div class="problem-content">
+        <h2 class="section-title">The hidden cost of not knowing</h2>
+        <p class="section-text">
+          Most property buyers discover planning issues after they've made an offer.
+          Conservation areas, listed building restrictions, or a neighbour's refused
+          extension can significantly impact what you can do with a property — and its value.
+        </p>
+        <div class="problem-points">
+          <div class="problem-point">
+            <span class="point-marker"></span>
+            <div class="point-content">
+              <strong>Time wasted</strong> on properties with restrictive planning histories
+            </div>
+          </div>
+          <div class="problem-point">
+            <span class="point-marker"></span>
+            <div class="point-content">
+              <strong>Missed opportunities</strong> in areas with high approval rates
+            </div>
+          </div>
+          <div class="problem-point">
+            <span class="point-marker"></span>
+            <div class="point-content">
+              <strong>Costly surprises</strong> after exchange when planning issues surface
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title center">Everything you need to know, in one place</h2>
+      <p class="section-text center">PlanScope surfaces the data that matters, right when you need it.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-number">01</div>
+          <h3 class="feature-title">Nearby Applications</h3>
+          <p class="feature-text">
+            See every planning application within 500m of the property. Filter by status,
+            type, and date. Understand what developments are happening in the area.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-number">02</div>
+          <h3 class="feature-title">Local Authority Insights</h3>
+          <p class="feature-text">
+            Approval rates, average decision times, and planning climate for each council.
+            Know whether you're buying in an area that welcomes development.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-number">03</div>
+          <h3 class="feature-title">Planning Constraints</h3>
+          <p class="feature-text">
+            Conservation areas, listed buildings, green belt, flood zones, and Article 4
+            directions. Critical restrictions flagged before you fall in love with a property.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-number">04</div>
+          <h3 class="feature-title">Smart Analysis</h3>
+          <p class="feature-text">
+            Our algorithms identify patterns and flag opportunities. High approval rates
+            for extensions? Many loft conversions nearby? We'll tell you.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-number">05</div>
+          <h3 class="feature-title">Works Offline</h3>
+          <p class="feature-text">
+            Data is cached locally so you can review properties even without an internet
+            connection. Perfect for viewings when mobile signal is patchy.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-number">06</div>
+          <h3 class="feature-title">Privacy First</h3>
+          <p class="feature-text">
+            We don't track your browsing history or sell your data. The extension only
+            activates on property listing pages. Your searches stay private.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <h2 class="section-title center">Up and running in 30 seconds</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Install the extension</h3>
+          <p class="step-text">
+            Click "Add to Chrome" and confirm. No account required, no setup needed.
+          </p>
+        </div>
+
+        <div class="step-connector"></div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Browse property listings</h3>
+          <p class="step-text">
+            Visit Rightmove or Zoopla and open any property listing as you normally would.
+          </p>
+        </div>
+
+        <div class="step-connector"></div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3 class="step-title">See the full picture</h3>
+          <p class="step-text">
+            PlanScope automatically shows planning data in a panel alongside the listing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title center">What property buyers say</h2>
+
+      <div class="testimonials-grid">
+        <blockquote class="testimonial">
+          <p class="testimonial-text">
+            Found out the property I was about to offer on was in a conservation area.
+            The extension I had planned would never have been approved. Saved me months
+            of heartache.
+          </p>
+          <footer class="testimonial-author">
+            <span class="author-name">Sarah M.</span>
+            <span class="author-role">First-time buyer, Bristol</span>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p class="testimonial-text">
+            I specifically look for areas with high approval rates now. PlanScope helped
+            me find a property where I knew my loft conversion would likely get approved.
+            It was.
+          </p>
+          <footer class="testimonial-author">
+            <span class="author-name">James T.</span>
+            <span class="author-role">Property investor, Manchester</span>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p class="testimonial-text">
+            The nearby applications feature is gold. You can see exactly what the council
+            has approved in the street. No more guessing whether that extension is realistic.
+          </p>
+          <footer class="testimonial-author">
+            <span class="author-name">David & Emma K.</span>
+            <span class="author-role">Homeowners, London</span>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <h2 class="section-title center">Simple, transparent pricing</h2>
+      <p class="section-text center">Start free. Upgrade when you need more.</p>
+
+      <div class="pricing-cards">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Free</h3>
+            <div class="pricing-price">
+              <span class="price-amount">£0</span>
+              <span class="price-period">forever</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li>10 property lookups per month</li>
+            <li>Nearby planning applications</li>
+            <li>Local authority approval rates</li>
+            <li>Basic planning constraints</li>
+          </ul>
+          <a href="https://chrome.google.com/webstore" class="btn btn-secondary" target="_blank" rel="noopener">Get Started</a>
+        </div>
+
+        <div class="pricing-card pricing-featured">
+          <div class="pricing-badge">Most popular</div>
+          <div class="pricing-header">
+            <h3 class="pricing-name">Pro</h3>
+            <div class="pricing-price">
+              <span class="price-amount">£9</span>
+              <span class="price-period">per month</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li>Unlimited property lookups</li>
+            <li>All planning constraints</li>
+            <li>Smart analysis & insights</li>
+            <li>Offline access</li>
+            <li>Priority data updates</li>
+            <li>Email support</li>
+          </ul>
+          <a href="https://chrome.google.com/webstore" class="btn btn-primary" target="_blank" rel="noopener">Start Free Trial</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Team</h3>
+            <div class="pricing-price">
+              <span class="price-amount">£29</span>
+              <span class="price-period">per month</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li>Everything in Pro</li>
+            <li>Up to 5 team members</li>
+            <li>Shared saved searches</li>
+            <li>API access</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="mailto:hello@planscope.uk" class="btn btn-secondary">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2 class="cta-title">Make informed property decisions</h2>
+      <p class="cta-text">
+        Join thousands of UK property buyers who research smarter with PlanScope.
+      </p>
+      <a href="https://chrome.google.com/webstore" class="btn btn-primary btn-large" target="_blank" rel="noopener">
+        Add to Chrome — Free
+      </a>
+      <p class="cta-note">Free forever. No credit card required.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">PlanScope</a>
+          <p class="footer-tagline">Planning intelligence for property buyers.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Support</h4>
+          <ul>
+            <li><a href="mailto:hello@planscope.uk">Contact</a></li>
+            <li><a href="/help">Help Centre</a></li>
+            <li><a href="/status">System Status</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Legal</h4>
+          <ul>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="/cookies">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 PlanScope. All rights reserved.</p>
+        <p class="footer-data">Planning data provided by <a href="https://planit.org.uk" target="_blank" rel="noopener">PlanIt</a> and <a href="https://planning.data.gov.uk" target="_blank" rel="noopener">Planning Data</a>.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie Banner -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-content">
+      <p class="cookie-text">
+        We use cookies to improve your experience and analyse site usage.
+        <a href="/cookies">Learn more</a>
+      </p>
+      <div class="cookie-actions">
+        <button class="btn btn-secondary btn-cookie" id="cookieReject">Reject</button>
+        <button class="btn btn-primary btn-cookie" id="cookieAccept">Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const nav = document.querySelector('.nav');
+
+    navToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      navToggle.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+      });
+    });
+
+    // Navbar background on scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Cookie banner
+    const cookieBanner = document.getElementById('cookieBanner');
+    const cookieAccept = document.getElementById('cookieAccept');
+    const cookieReject = document.getElementById('cookieReject');
+
+    function setCookieConsent(value) {
+      localStorage.setItem('planscope-cookies', value);
+      cookieBanner.classList.remove('visible');
+    }
+
+    function checkCookieConsent() {
+      const consent = localStorage.getItem('planscope-cookies');
+      if (!consent) {
+        setTimeout(() => {
+          cookieBanner.classList.add('visible');
+        }, 1000);
+      }
+    }
+
+    cookieAccept.addEventListener('click', () => setCookieConsent('accepted'));
+    cookieReject.addEventListener('click', () => setCookieConsent('rejected'));
+    checkCookieConsent();
+
+    // Dynamic footer year
+    document.querySelector('.footer-copyright').textContent =
+      `© ${new Date().getFullYear()} PlanScope. All rights reserved.`;
+  </script>
+</body>
+</html>

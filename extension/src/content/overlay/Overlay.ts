@@ -6,11 +6,16 @@ import { createFilters } from './components/Filters';
 import { createApplicationList } from './components/ApplicationList';
 import { createMapView } from './components/MapView';
 import { createInsights } from './components/Insights';
+import { createConstraints } from './components/Constraints';
+import { createSkeletonLoader } from './components/SkeletonLoader';
+import { createErrorDisplay, createOfflineBanner } from './components/ErrorDisplay';
 import { generateInsights } from '../../services/insights';
+import { isOnline } from '../../services/errors';
 
 interface OverlayCallbacks {
   onToggle: (isOpen: boolean) => void;
   onFilterChange: (filters: FilterState) => void;
+  onRetry?: () => void;
 }
 
 interface OverlayInstance {
@@ -62,6 +67,13 @@ export function createOverlay(
     callbacks.onFilterChange(filters);
   };
 
+  // Retry handler
+  const handleRetry = () => {
+    if (callbacks.onRetry) {
+      callbacks.onRetry();
+    }
+  };
+
   // Create header
   const header = createHeader(handleToggle);
   container.appendChild(header);
@@ -75,33 +87,40 @@ export function createOverlay(
   function renderBody() {
     body.innerHTML = '';
 
-    // Loading state
+    // Loading state - show skeleton loader instead of spinner
     if (currentState.isLoading) {
-      body.innerHTML = `
-        <div class="planscope-loading">
-          <div class="planscope-spinner"></div>
-          <span>Loading planning data...</span>
-        </div>
-      `;
+      const skeleton = createSkeletonLoader();
+      body.appendChild(skeleton);
       return;
     }
 
-    // Error state
+    // Error state - show enhanced error display
     if (currentState.error) {
-      body.innerHTML = `
-        <div class="planscope-error">
-          <strong>Error</strong><br>
-          ${currentState.error}
-        </div>
-      `;
+      const errorDisplay = createErrorDisplay({
+        error: currentState.error,
+        onRetry: handleRetry,
+      });
+      body.appendChild(errorDisplay);
       return;
     }
 
     // Data loaded
     if (currentState.data) {
+      // Show offline banner if using cached data while offline
+      if (!isOnline()) {
+        const offlineBanner = createOfflineBanner();
+        body.appendChild(offlineBanner);
+      }
+
       // Climate summary
       const climate = createClimateSummary(currentState.data.local_authority);
       body.appendChild(climate);
+
+      // Planning constraints (from Planning Data Platform)
+      if (currentState.data.constraints) {
+        const constraintsEl = createConstraints(currentState.data.constraints);
+        body.appendChild(constraintsEl);
+      }
 
       // Insights
       const insights = generateInsights(
@@ -120,8 +139,13 @@ export function createOverlay(
         const centerLng = currentState.data.applications.reduce((sum, app) => sum + app.lng, 0) / currentState.data.applications.length;
 
         createMapView(centerLat, centerLng, currentState.data.applications, shadow).then((mapContainer) => {
-          // Insert map after climate summary
-          body.insertBefore(mapContainer, body.children[1] || null);
+          // Insert map after constraints (or climate if no constraints)
+          const insertAfter = body.querySelector('.planscope-constraints') || body.querySelector('.planscope-climate');
+          if (insertAfter && insertAfter.nextSibling) {
+            body.insertBefore(mapContainer, insertAfter.nextSibling);
+          } else {
+            body.insertBefore(mapContainer, body.children[2] || null);
+          }
         });
       }
 
