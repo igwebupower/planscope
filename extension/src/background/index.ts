@@ -3,6 +3,13 @@
 
 import { fetchPlanningData, checkApiHealth, setUseMockApi, setUseCache } from '../services/api';
 import { geocodePostcode, geocodeAddress } from '../services/geocoding';
+import {
+  getUsageStatus,
+  canPerformLookup,
+  incrementLookup,
+  setTier,
+  resetUsageData,
+} from '../services/usage';
 
 chrome.runtime.onInstalled.addListener(() => {
   console.log('[PlanScope] Extension installed');
@@ -42,6 +49,26 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     case 'GET_TAB_INFO':
       sendResponse({ tabId: sender.tab?.id, url: sender.tab?.url });
       return false;
+
+    case 'GET_USAGE_STATUS':
+      handleGetUsageStatus(sendResponse);
+      return true;
+
+    case 'CHECK_USAGE_LIMIT':
+      handleCheckUsageLimit(sendResponse);
+      return true;
+
+    case 'INCREMENT_LOOKUP':
+      handleIncrementLookup(sendResponse);
+      return true;
+
+    case 'SET_TIER':
+      handleSetTier(message.tier, sendResponse);
+      return true;
+
+    case 'RESET_USAGE':
+      handleResetUsage(sendResponse);
+      return true;
 
     default:
       console.warn('[PlanScope Background] Unknown message type:', message.type);
@@ -117,6 +144,75 @@ async function handleCheckApiHealth(sendResponse: (response: any) => void) {
     sendResponse({ success: true, healthy });
   } catch (error) {
     sendResponse({ success: false, healthy: false });
+  }
+}
+
+async function handleGetUsageStatus(sendResponse: (response: any) => void) {
+  try {
+    const status = await getUsageStatus();
+    sendResponse({ success: true, data: status });
+  } catch (error) {
+    console.error('[PlanScope Background] Error getting usage status:', error);
+    sendResponse({
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
+async function handleCheckUsageLimit(sendResponse: (response: any) => void) {
+  try {
+    const canLookup = await canPerformLookup();
+    const status = await getUsageStatus();
+    sendResponse({ success: true, canLookup, status });
+  } catch (error) {
+    console.error('[PlanScope Background] Error checking usage limit:', error);
+    sendResponse({
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
+async function handleIncrementLookup(sendResponse: (response: any) => void) {
+  try {
+    await incrementLookup();
+    const status = await getUsageStatus();
+    sendResponse({ success: true, status });
+  } catch (error) {
+    console.error('[PlanScope Background] Error incrementing lookup:', error);
+    sendResponse({
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
+async function handleSetTier(tier: 'free' | 'pro', sendResponse: (response: any) => void) {
+  try {
+    await setTier(tier);
+    const status = await getUsageStatus();
+    sendResponse({ success: true, status });
+  } catch (error) {
+    console.error('[PlanScope Background] Error setting tier:', error);
+    sendResponse({
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
+async function handleResetUsage(sendResponse: (response: any) => void) {
+  try {
+    await resetUsageData();
+    const status = await getUsageStatus();
+    sendResponse({ success: true, status });
+  } catch (error) {
+    console.error('[PlanScope Background] Error resetting usage:', error);
+    sendResponse({
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+    });
   }
 }
 

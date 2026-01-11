@@ -3,7 +3,7 @@
 
 import { detectSite, extractPropertyData } from './sites/detector';
 import { createOverlay } from './overlay/Overlay';
-import type { OverlayState, PlanningResponse } from '../types';
+import type { OverlayState, PlanningResponse, UsageStatus } from '../types';
 
 /**
  * Send message to background script and wait for response
@@ -88,6 +88,62 @@ async function geocodeAddressViaBackground(address: string): Promise<{ lat: numb
   }
 
   return { lat: response.data.lat, lng: response.data.lng };
+}
+
+/**
+ * Check usage limit via background script
+ */
+async function checkUsageLimitViaBackground(): Promise<{ canLookup: boolean; status: UsageStatus }> {
+  const response = await sendMessage<{
+    success: boolean;
+    canLookup: boolean;
+    status: UsageStatus;
+    error?: string;
+  }>({
+    type: 'CHECK_USAGE_LIMIT',
+  });
+
+  if (!response.success) {
+    // Default to allowing lookup on error to avoid blocking users
+    console.warn('[PlanScope] Usage check failed, allowing lookup');
+    return {
+      canLookup: true,
+      status: {
+        used: 0,
+        limit: 10,
+        remaining: 10,
+        isUnlimited: false,
+        tier: 'free',
+        daysUntilReset: 30,
+        resetDate: new Date().toISOString(),
+      },
+    };
+  }
+
+  return { canLookup: response.canLookup, status: response.status };
+}
+
+/**
+ * Increment lookup counter via background script
+ */
+async function incrementLookupViaBackground(): Promise<UsageStatus | null> {
+  try {
+    const response = await sendMessage<{
+      success: boolean;
+      status: UsageStatus;
+      error?: string;
+    }>({
+      type: 'INCREMENT_LOOKUP',
+    });
+
+    if (response.success) {
+      return response.status;
+    }
+    return null;
+  } catch (error) {
+    console.warn('[PlanScope] Failed to increment lookup counter:', error);
+    return null;
+  }
 }
 
 console.log('[PlanScope] Content script loaded');
@@ -178,11 +234,30 @@ async function init(): Promise<void> {
   // Fetch planning data via background script
   if (propertyData.lat && propertyData.lng) {
     try {
+      // Check usage limit before making API call
+      const { canLookup, status: usageStatus } = await checkUsageLimitViaBackground();
+      state.usageStatus = usageStatus;
+
+      if (!canLookup) {
+        // Limit reached - show upgrade prompt
+        state.isLoading = false;
+        state.limitReached = true;
+        overlay.update(state);
+        console.log('[PlanScope] Monthly lookup limit reached');
+        return;
+      }
+
       const data: PlanningResponse = await fetchPlanningDataViaBackground(
         propertyData.lat,
         propertyData.lng,
         500 // 500m radius
       );
+
+      // Increment lookup counter after successful fetch
+      const updatedStatus = await incrementLookupViaBackground();
+      if (updatedStatus) {
+        state.usageStatus = updatedStatus;
+      }
 
       state.isLoading = false;
       state.data = data;

@@ -1,10 +1,31 @@
 /**
  * PlanScope Popup Script
- * Handles settings, cache management, and status display
+ * Handles settings, cache management, usage tracking, and status display
  */
 
 import { checkApiHealth, setUseCache } from '../services/api';
 import { getCacheStats, clearAllCache, clearExpiredCache } from '../services/cache';
+import type { UsageStatus } from '../types';
+
+/**
+ * Get usage status via message to background script
+ */
+async function getUsageStatusViaBackground(): Promise<UsageStatus | null> {
+  return new Promise((resolve) => {
+    chrome.runtime.sendMessage({ type: 'GET_USAGE_STATUS' }, (response) => {
+      if (chrome.runtime.lastError) {
+        console.error('Error getting usage status:', chrome.runtime.lastError);
+        resolve(null);
+        return;
+      }
+      if (response?.success && response.data) {
+        resolve(response.data);
+      } else {
+        resolve(null);
+      }
+    });
+  });
+}
 
 // DOM Elements
 const statusDot = document.getElementById('status-dot') as HTMLElement;
@@ -18,6 +39,13 @@ const checkApiBtn = document.getElementById('check-api-btn') as HTMLButtonElemen
 const toast = document.getElementById('toast') as HTMLElement;
 const tabs = document.querySelectorAll('.tab');
 const tabContents = document.querySelectorAll('.tab-content');
+
+// Usage DOM Elements
+const usageTier = document.getElementById('usage-tier') as HTMLElement;
+const usageBar = document.getElementById('usage-bar') as HTMLElement;
+const usageText = document.getElementById('usage-text') as HTMLElement;
+const usageReset = document.getElementById('usage-reset') as HTMLElement;
+const upgradeLink = document.getElementById('upgrade-link') as HTMLAnchorElement;
 
 /**
  * Show toast notification
@@ -59,6 +87,57 @@ async function updateConnectionStatus() {
   } catch {
     statusDot.classList.add('error');
     statusText.textContent = 'Error';
+  }
+}
+
+/**
+ * Update usage display
+ */
+async function updateUsageDisplay() {
+  try {
+    const status = await getUsageStatusViaBackground();
+
+    if (!status) {
+      usageText.textContent = 'Unable to load usage';
+      usageReset.textContent = '';
+      return;
+    }
+
+    if (status.isUnlimited) {
+      // Pro tier
+      usageTier.textContent = 'Pro';
+      usageTier.classList.add('pro');
+      usageBar.style.width = '100%';
+      usageBar.classList.remove('warning', 'full');
+      usageText.textContent = 'Unlimited lookups';
+      usageReset.textContent = '';
+      upgradeLink.classList.add('hidden');
+      usageText.parentElement?.classList.add('unlimited');
+    } else {
+      // Free tier
+      usageTier.textContent = 'Free';
+      usageTier.classList.remove('pro');
+      upgradeLink.classList.remove('hidden');
+      usageText.parentElement?.classList.remove('unlimited');
+
+      const percentage = (status.used / status.limit) * 100;
+      usageBar.style.width = `${percentage}%`;
+
+      // Update bar color based on usage
+      usageBar.classList.remove('warning', 'full');
+      if (percentage >= 100) {
+        usageBar.classList.add('full');
+      } else if (percentage >= 70) {
+        usageBar.classList.add('warning');
+      }
+
+      usageText.textContent = `${status.used}/${status.limit} lookups used`;
+      usageReset.textContent = `Resets in ${status.daysUntilReset} day${status.daysUntilReset !== 1 ? 's' : ''}`;
+    }
+  } catch (error) {
+    console.error('Failed to load usage status:', error);
+    usageText.textContent = 'Unable to load usage';
+    usageReset.textContent = '';
   }
 }
 
@@ -205,6 +284,7 @@ async function init() {
 
   // Load initial data
   await loadSettings();
+  await updateUsageDisplay();
   await updateCacheStats();
   await updateConnectionStatus();
 

@@ -1,6 +1,27 @@
 // Planning application status types
 export type ApplicationStatus = 'APPROVED' | 'REFUSED' | 'PENDING' | 'WITHDRAWN';
 
+// Subscription tier types
+export type SubscriptionTier = 'free' | 'pro';
+
+// Usage tracking data
+export interface UsageData {
+  monthlyLookups: number;
+  resetDate: string; // ISO date string
+  tier: SubscriptionTier;
+}
+
+// Usage status for UI display
+export interface UsageStatus {
+  used: number;
+  limit: number;
+  remaining: number;
+  isUnlimited: boolean;
+  tier: SubscriptionTier;
+  daysUntilReset: number;
+  resetDate: string;
+}
+
 // Planning climate assessment
 export type PlanningClimate = 'PRO_DEVELOPMENT' | 'MODERATE' | 'RESTRICTIVE';
 
@@ -87,6 +108,8 @@ export interface OverlayState {
   error: string | null;
   data: PlanningResponse | null;
   filters: FilterState;
+  limitReached?: boolean;
+  usageStatus?: UsageStatus;
 }
 
 // Insight types

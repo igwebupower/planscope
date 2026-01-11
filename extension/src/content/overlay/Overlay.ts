@@ -9,6 +9,8 @@ import { createInsights } from './components/Insights';
 import { createConstraints } from './components/Constraints';
 import { createSkeletonLoader } from './components/SkeletonLoader';
 import { createErrorDisplay, createOfflineBanner } from './components/ErrorDisplay';
+import { createUpgradePrompt, getUpgradePromptStyles } from './components/UpgradePrompt';
+import { getUsageIndicatorStyles } from './components/UsageIndicator';
 import { generateInsights } from '../../services/insights';
 import { isOnline } from '../../services/errors';
 
@@ -38,9 +40,9 @@ export function createOverlay(
   // Attach shadow root (closed mode for better isolation)
   const shadow = host.attachShadow({ mode: 'closed' });
 
-  // Inject styles
+  // Inject styles (base + component styles)
   const styleElement = document.createElement('style');
-  styleElement.textContent = getOverlayStyles();
+  styleElement.textContent = getOverlayStyles() + getUsageIndicatorStyles() + getUpgradePromptStyles();
   shadow.appendChild(styleElement);
 
   // Create main container
@@ -74,14 +76,28 @@ export function createOverlay(
     }
   };
 
-  // Create header
-  const header = createHeader(handleToggle);
-  container.appendChild(header);
-
   // Create body
   const body = document.createElement('div');
   body.className = 'planscope-body';
-  container.appendChild(body);
+
+  // Header reference for updates
+  let headerElement: HTMLElement | null = null;
+
+  // Render the entire overlay content
+  function render() {
+    // Update or create header
+    if (headerElement) {
+      const newHeader = createHeader(handleToggle, currentState.usageStatus);
+      container.replaceChild(newHeader, headerElement);
+      headerElement = newHeader;
+    } else {
+      headerElement = createHeader(handleToggle, currentState.usageStatus);
+      container.appendChild(headerElement);
+      container.appendChild(body);
+    }
+
+    renderBody();
+  }
 
   // Render body content
   function renderBody() {
@@ -91,6 +107,13 @@ export function createOverlay(
     if (currentState.isLoading) {
       const skeleton = createSkeletonLoader();
       body.appendChild(skeleton);
+      return;
+    }
+
+    // Limit reached - show upgrade prompt
+    if (currentState.limitReached) {
+      const upgradePrompt = createUpgradePrompt(currentState.usageStatus);
+      body.appendChild(upgradePrompt);
       return;
     }
 
@@ -166,7 +189,7 @@ export function createOverlay(
   }
 
   // Initial render
-  renderBody();
+  render();
 
   // Inject into page
   document.body.appendChild(host);
@@ -178,7 +201,7 @@ export function createOverlay(
     update: (newState: OverlayState) => {
       currentState = { ...newState };
       container.classList.toggle('collapsed', !currentState.isOpen);
-      renderBody();
+      render();
     },
     destroy: () => {
       host.remove();

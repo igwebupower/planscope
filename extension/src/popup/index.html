@@ -319,6 +319,71 @@
       color: #bbb;
     }
 
+    /* Usage Section */
+    .usage-section {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      color: white;
+    }
+    .usage-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .usage-tier {
+      font-size: 14px;
+      font-weight: 600;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+    }
+    .usage-tier.pro {
+      background: rgba(34, 197, 94, 0.3);
+    }
+    .upgrade-link {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+    }
+    .upgrade-link:hover {
+      color: white;
+      text-decoration: underline;
+    }
+    .upgrade-link.hidden {
+      display: none;
+    }
+    .usage-bar-container {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .usage-bar {
+      height: 100%;
+      background: white;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+    .usage-bar.warning {
+      background: #fbbf24;
+    }
+    .usage-bar.full {
+      background: #ef4444;
+    }
+    .usage-stats {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .usage-stats.unlimited {
+      justify-content: center;
+    }
+
     /* Footer */
     .footer {
       margin-top: 16px;
@@ -379,6 +444,21 @@
 
     <!-- Status Tab -->
     <div id="status-tab" class="tab-content active">
+      <!-- Usage Section -->
+      <div class="usage-section">
+        <div class="usage-header">
+          <div class="usage-tier" id="usage-tier">Free</div>
+          <a href="https://planscope.vercel.app/#pricing" target="_blank" class="upgrade-link" id="upgrade-link">Upgrade</a>
+        </div>
+        <div class="usage-bar-container">
+          <div class="usage-bar" id="usage-bar" style="width: 0%"></div>
+        </div>
+        <div class="usage-stats">
+          <span id="usage-text">0/10 lookups used</span>
+          <span id="usage-reset">Resets in 30 days</span>
+        </div>
+      </div>
+
       <div class="status">
         <div class="status-label">Connection</div>
         <div class="status-value">

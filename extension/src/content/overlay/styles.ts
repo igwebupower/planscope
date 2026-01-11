@@ -66,6 +66,12 @@ export function getOverlayStyles(): string {
       gap: 10px;
     }
 
+    .planscope-header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .planscope-logo {
       width: 28px;
       height: 28px;
