@@ -39,10 +39,6 @@ const CONFIG = {
   PLANNING_DATA_BASE_URL: 'https://www.planning.data.gov.uk',
   PLANNING_DATA_TIMEOUT_MS: 10000,
 
-  // Fallback mock API for development
-  MOCK_API_URL: 'http://localhost:3000',
-  USE_MOCK_API: false,
-
   // Retry configuration
   MAX_RETRIES: 3,
   INITIAL_RETRY_DELAY_MS: 1000,
@@ -51,9 +47,6 @@ const CONFIG = {
   // Cache configuration
   CACHE_TTL_MS: 24 * 60 * 60 * 1000, // 24 hours
   USE_CACHE: true,
-
-  // Enable fallback to mock data when API fails
-  USE_MOCK_FALLBACK: true,
 };
 
 // Constraint datasets to fetch from Planning Data Platform
@@ -503,66 +496,6 @@ function calculateLocalAuthorityStats(
 }
 
 /**
- * Generate mock planning data for fallback
- */
-function generateMockData(lat: number, lng: number): PlanningResponse {
-  console.log('[PlanScope API] Generating mock data for fallback');
-
-  const mockApplications: PlanningApplication[] = [
-    {
-      id: 'MOCK/2024/001',
-      address: 'Nearby Property 1',
-      lat: lat + 0.001,
-      lng: lng + 0.001,
-      distance_m: 150,
-      status: 'APPROVED',
-      decision_date: '2024-06-15',
-      type: 'Full Planning',
-      summary: 'Single storey rear extension (mock data - API unavailable)',
-      url: undefined,
-      authority: 'Local Planning Authority',
-    },
-    {
-      id: 'MOCK/2024/002',
-      address: 'Nearby Property 2',
-      lat: lat - 0.001,
-      lng: lng + 0.0015,
-      distance_m: 200,
-      status: 'PENDING',
-      decision_date: null,
-      type: 'Householder',
-      summary: 'Loft conversion with dormer (mock data - API unavailable)',
-      url: undefined,
-      authority: 'Local Planning Authority',
-    },
-    {
-      id: 'MOCK/2023/003',
-      address: 'Nearby Property 3',
-      lat: lat + 0.0015,
-      lng: lng - 0.001,
-      distance_m: 250,
-      status: 'REFUSED',
-      decision_date: '2023-11-20',
-      type: 'Full Planning',
-      summary: 'Two storey side extension (mock data - API unavailable)',
-      url: undefined,
-      authority: 'Local Planning Authority',
-    },
-  ];
-
-  return {
-    applications: mockApplications,
-    local_authority: {
-      name: 'Local Planning Authority',
-      approval_rate: 0.75,
-      avg_decision_days: 56,
-      planning_climate: 'MODERATE',
-    },
-    constraints: [],
-  };
-}
-
-/**
  * Fetch planning applications near a given location
  * Primary: PlanIt API
  * Supplementary: Planning Data Platform for constraints
@@ -573,11 +506,6 @@ export async function fetchPlanningData(
   radiusM: number = 500,
   options: FetchPlanningDataOptions = {}
 ): Promise<PlanningResponse> {
-  // Use mock API if configured
-  if (CONFIG.USE_MOCK_API) {
-    return fetchFromMockApi(lat, lng, radiusM, options);
-  }
-
   const cacheKey = generateCacheKey(lat, lng, radiusM);
 
   // Check cache first (unless skipCache is true or dates are filtered)
@@ -638,50 +566,8 @@ export async function fetchPlanningData(
     return result;
   } catch (error) {
     console.error('[PlanScope API] Failed to fetch from PlanIt API:', error);
-
-    // If mock fallback is enabled, return mock data instead of throwing
-    if (CONFIG.USE_MOCK_FALLBACK) {
-      console.log('[PlanScope API] Using mock data fallback');
-      return generateMockData(lat, lng);
-    }
-
     throw error;
   }
-}
-
-/**
- * Fallback to mock API for development
- */
-async function fetchFromMockApi(
-  lat: number,
-  lng: number,
-  radiusM: number,
-  options: FetchPlanningDataOptions
-): Promise<PlanningResponse> {
-  const params = new URLSearchParams({
-    lat: String(lat),
-    lng: String(lng),
-    radius_m: String(radiusM),
-  });
-
-  if (options.fromDate) {
-    params.set('from_date', options.fromDate);
-  }
-  if (options.toDate) {
-    params.set('to_date', options.toDate);
-  }
-
-  const url = `${CONFIG.MOCK_API_URL}/planning-applications?${params.toString()}`;
-
-  const response = await fetchWithRetry(url, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  // Use safe JSON parsing
-  return parseJsonResponse<PlanningResponse>(response, 'Mock API');
 }
 
 /**
@@ -715,20 +601,6 @@ export async function checkApiHealth(): Promise<boolean> {
 }
 
 /**
- * Check if we're using mock API
- */
-export function isUsingMockApi(): boolean {
-  return CONFIG.USE_MOCK_API;
-}
-
-/**
- * Toggle between real and mock API (for development)
- */
-export function setUseMockApi(useMock: boolean): void {
-  CONFIG.USE_MOCK_API = useMock;
-}
-
-/**
  * Toggle caching on/off
  */
 export function setUseCache(useCache: boolean): void {
@@ -740,11 +612,4 @@ export function setUseCache(useCache: boolean): void {
  */
 export function isCacheEnabled(): boolean {
   return CONFIG.USE_CACHE && isCacheAvailable();
-}
-
-/**
- * Toggle mock fallback on/off (for testing)
- */
-export function setUseMockFallback(useFallback: boolean): void {
-  CONFIG.USE_MOCK_FALLBACK = useFallback;
 }

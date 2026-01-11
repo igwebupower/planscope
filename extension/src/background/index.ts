@@ -1,7 +1,7 @@
 // PlanScope Background Service Worker
 // Handles API calls from content scripts to avoid CORS issues
 
-import { fetchPlanningData, checkApiHealth, setUseMockApi, setUseCache } from '../services/api';
+import { fetchPlanningData, checkApiHealth, setUseCache } from '../services/api';
 import { geocodePostcode, geocodeAddress } from '../services/geocoding';
 import {
   getUsageStatus,
@@ -35,11 +35,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     case 'CHECK_API_HEALTH':
       handleCheckApiHealth(sendResponse);
       return true;
-
-    case 'SET_USE_MOCK_API':
-      setUseMockApi(message.useMock);
-      sendResponse({ success: true });
-      return false;
 
     case 'SET_USE_CACHE':
       setUseCache(message.useCache);

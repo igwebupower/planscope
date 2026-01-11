@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { fetchPlanningData, setUseMockApi } from '../../services/api';
+import { fetchPlanningData, setUseCache } from '../../services/api';
 
 /**
  * Helper to create a proper mock Response with both text() and json() methods
@@ -19,8 +19,8 @@ function createMockResponse(data: unknown, options: { ok?: boolean; status?: num
 describe('Injection Security Tests', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Use mock API for injection tests (tests URL encoding)
-    setUseMockApi(true);
+    // Disable caching for tests
+    setUseCache(false);
   });
 
   describe('API Parameter Injection', () => {
@@ -56,18 +56,21 @@ describe('Injection Security Tests', () => {
     ];
 
     it('should safely encode parameters in URL', async () => {
-      vi.mocked(fetch).mockResolvedValue(
-        createMockResponse({ applications: [], local_authority: {} })
-      );
-
       // Test that injection payloads are properly URL-encoded
       for (const payload of INJECTION_PAYLOADS.slice(0, 3)) {
+        // Reset mocks for each iteration
+        vi.mocked(fetch).mockReset();
+        // Mock PlanIt API format - use mockResolvedValue so it works for all calls
+        vi.mocked(fetch).mockResolvedValue(
+          createMockResponse({ records: [], count: 0, page_size: 50 })
+        );
+
         // This tests the URL construction, not the actual API behavior
         await fetchPlanningData(51.5074, -0.1278, 500, {
           fromDate: payload,
         });
 
-        const calledUrl = vi.mocked(fetch).mock.calls.slice(-1)[0][0] as string;
+        const calledUrl = vi.mocked(fetch).mock.calls[0][0] as string;
 
         // URL should be properly encoded - semicolon and quote should be encoded
         // Note: '--' doesn't need encoding in URLs (safe characters)
@@ -79,24 +82,26 @@ describe('Injection Security Tests', () => {
     });
 
     it('should use URLSearchParams for safe parameter encoding', async () => {
+      // Mock PlanIt API format
       vi.mocked(fetch).mockResolvedValue(
-        createMockResponse({ applications: [], local_authority: {} })
+        createMockResponse({ records: [], count: 0, page_size: 50 })
       );
 
       await fetchPlanningData(51.5074, -0.1278, 500, {
         fromDate: "2024-01-01'; DROP TABLE--",
       });
 
-      const calledUrl = vi.mocked(fetch).mock.calls.slice(-1)[0][0] as string;
+      const calledUrl = vi.mocked(fetch).mock.calls[0][0] as string;
 
-      // Should be URL encoded
-      expect(calledUrl).toContain('from_date=2024-01-01');
+      // Should be URL encoded (PlanIt uses start_date)
+      expect(calledUrl).toContain('start_date=2024-01-01');
       expect(calledUrl).toContain('%27'); // Encoded single quote
     });
 
     it('should not allow parameter pollution', async () => {
+      // Mock PlanIt API format
       vi.mocked(fetch).mockResolvedValue(
-        createMockResponse({ applications: [], local_authority: {} })
+        createMockResponse({ records: [], count: 0, page_size: 50 })
       );
 
       // Attempt to inject additional parameters
@@ -104,7 +109,7 @@ describe('Injection Security Tests', () => {
         fromDate: '2024-01-01&admin=true&debug=1',
       });
 
-      const calledUrl = vi.mocked(fetch).mock.calls.slice(-1)[0][0] as string;
+      const calledUrl = vi.mocked(fetch).mock.calls[0][0] as string;
 
       // The & should be encoded, not treated as parameter separator
       expect(calledUrl).toContain('%26admin');
@@ -129,16 +134,14 @@ describe('Injection Security Tests', () => {
     it('should handle response with unexpected structure', async () => {
       vi.mocked(fetch).mockResolvedValue(
         createMockResponse({
-          // Missing expected fields
+          // Missing expected fields (no records array)
           unexpected: 'data',
           __proto__: { polluted: true },
         })
       );
 
-      // Should not throw, but return the response as-is
-      // The calling code should validate the structure
-      const result = await fetchPlanningData(51.5074, -0.1278);
-      expect(result).toBeDefined();
+      // Should throw since PlanIt API expects records array
+      await expect(fetchPlanningData(51.5074, -0.1278)).rejects.toThrow();
     });
   });
 

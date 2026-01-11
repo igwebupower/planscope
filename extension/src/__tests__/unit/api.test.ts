@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { fetchPlanningData, checkApiHealth, setUseMockApi, setUseCache, setUseMockFallback } from '../../services/api';
+import { fetchPlanningData, checkApiHealth, setUseCache } from '../../services/api';
 
 /**
  * Helper to create a proper mock Response with both text() and json() methods
@@ -64,12 +64,8 @@ const emptyConstraintsResponse = { entities: [], count: 0 };
 describe('API Service', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Ensure we're using real API (not mock) for these tests
-    setUseMockApi(false);
     // Disable caching for tests
     setUseCache(false);
-    // Disable mock fallback to test actual error handling
-    setUseMockFallback(false);
   });
 
   describe('fetchPlanningData', () => {

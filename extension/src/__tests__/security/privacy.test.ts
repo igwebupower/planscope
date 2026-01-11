@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { setUseMockApi, setUseCache } from '../../services/api';
+import { setUseCache } from '../../services/api';
 
 /**
  * Helper to create a proper mock Response with both text() and json() methods
@@ -19,8 +19,6 @@ function createMockResponse(data: unknown, options: { ok?: boolean; status?: num
 describe('Privacy and Data Security Tests', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Use mock API for privacy tests
-    setUseMockApi(true);
     // Disable caching for tests
     setUseCache(false);
   });
@@ -36,9 +34,10 @@ describe('Privacy and Data Security Tests', () => {
     });
 
     it('should not expose API keys or tokens in requests', async () => {
-      vi.mocked(fetch).mockResolvedValue(
-        createMockResponse({ applications: [], local_authority: {} })
-      );
+      // Mock PlanIt API format
+      vi.mocked(fetch)
+        .mockResolvedValueOnce(createMockResponse({ records: [], count: 0, page_size: 50 }))
+        .mockResolvedValue(createMockResponse({ entities: [], count: 0 }));
 
       const { fetchPlanningData } = await import('../../services/api');
       await fetchPlanningData(51.5074, -0.1278);
@@ -90,23 +89,27 @@ describe('Privacy and Data Security Tests', () => {
 
   describe('Cross-Origin Security', () => {
     it('should only make requests to allowed origins', async () => {
-      vi.mocked(fetch).mockResolvedValue(
-        createMockResponse({ applications: [], local_authority: {} })
-      );
+      // Mock PlanIt API format
+      vi.mocked(fetch)
+        .mockResolvedValueOnce(createMockResponse({ records: [], count: 0, page_size: 50 }))
+        .mockResolvedValue(createMockResponse({ entities: [], count: 0 }));
 
       const { fetchPlanningData } = await import('../../services/api');
       await fetchPlanningData(51.5074, -0.1278);
 
       const calledUrl = vi.mocked(fetch).mock.calls[0][0] as string;
 
-      // Should only call localhost in development (mock API)
-      expect(calledUrl).toMatch(/^http:\/\/localhost:3000/);
+      // Should only call allowed APIs (PlanIt and Planning Data Platform)
+      const allowedDomains = ['planit.org.uk', 'planning.data.gov.uk'];
+      const urlObj = new URL(calledUrl);
+      expect(allowedDomains.some(domain => urlObj.hostname.includes(domain))).toBe(true);
     });
 
     it('should not include credentials in cross-origin requests by default', async () => {
-      vi.mocked(fetch).mockResolvedValue(
-        createMockResponse({ applications: [], local_authority: {} })
-      );
+      // Mock PlanIt API format
+      vi.mocked(fetch)
+        .mockResolvedValueOnce(createMockResponse({ records: [], count: 0, page_size: 50 }))
+        .mockResolvedValue(createMockResponse({ entities: [], count: 0 }));
 
       const { fetchPlanningData } = await import('../../services/api');
       await fetchPlanningData(51.5074, -0.1278);
