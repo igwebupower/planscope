@@ -21,7 +21,9 @@
       "Bash(npm install:*)",
       "Bash(curl:*)",
       "Bash(findstr:*)",
-      "Bash(npx vercel --prod --yes)"
+      "Bash(npx vercel --prod --yes)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: Implement licence key system with Stripe and Supabase\n\nAPI Changes:\n- Add Supabase and Stripe dependencies\n- Create licence validation endpoint \\(POST /licence/validate\\)\n- Create Stripe webhook handler for payment events\n- Create checkout session endpoint for Stripe Checkout\n- Add licence key generator utility\n\nExtension Changes:\n- Add licence service for validation and storage\n- Add licence message handlers in background script\n- Add Licence tab to popup with upgrade/activation UI\n- Implement startup licence check with daily revalidation\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)"
     ]
   }
 }
