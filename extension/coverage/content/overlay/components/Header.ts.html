@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>0/43</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>0/43</span>
             </div>
         
             
@@ -87,7 +87,45 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -112,24 +150,43 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >/**</span></span></span>
-<span class="cstat-no" title="statement not covered" > * Header component with logo, title, and collapse toggle</span>
+<span class="cstat-no" title="statement not covered" > * Header component with logo, title, usage indicator, and collapse toggle</span>
 <span class="cstat-no" title="statement not covered" > */</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export function createHeader(onToggle: () =&gt; void): HTMLElement {</span>
+<span class="cstat-no" title="statement not covered" >import type { UsageStatus } from '../../../types';</span>
+<span class="cstat-no" title="statement not covered" >import { createUsageIndicator } from './UsageIndicator';</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export function createHeader(onToggle: () =&gt; void, usageStatus?: UsageStatus): HTMLElement {</span>
 <span class="cstat-no" title="statement not covered" >  const header = document.createElement('div');</span>
 <span class="cstat-no" title="statement not covered" >  header.className = 'planscope-header';</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  header.innerHTML = `</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-header-left"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div class="planscope-logo"&gt;P&lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;span class="planscope-title"&gt;PlanScope&lt;/span&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-toggle"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/svg&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >  // Create header structure</span>
+<span class="cstat-no" title="statement not covered" >  const headerLeft = document.createElement('div');</span>
+<span class="cstat-no" title="statement not covered" >  headerLeft.className = 'planscope-header-left';</span>
+<span class="cstat-no" title="statement not covered" >  headerLeft.innerHTML = `</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-logo"&gt;P&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;span class="planscope-title"&gt;PlanScope&lt;/span&gt;</span>
 <span class="cstat-no" title="statement not covered" >  `;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  const headerRight = document.createElement('div');</span>
+<span class="cstat-no" title="statement not covered" >  headerRight.className = 'planscope-header-right';</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  // Add usage indicator</span>
+<span class="cstat-no" title="statement not covered" >  const usageIndicator = createUsageIndicator(usageStatus);</span>
+<span class="cstat-no" title="statement not covered" >  headerRight.appendChild(usageIndicator);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  // Add toggle button</span>
+<span class="cstat-no" title="statement not covered" >  const toggle = document.createElement('div');</span>
+<span class="cstat-no" title="statement not covered" >  toggle.className = 'planscope-toggle';</span>
+<span class="cstat-no" title="statement not covered" >  toggle.innerHTML = `</span>
+<span class="cstat-no" title="statement not covered" >    &lt;svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/svg&gt;</span>
+<span class="cstat-no" title="statement not covered" >  `;</span>
+<span class="cstat-no" title="statement not covered" >  headerRight.appendChild(toggle);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  header.appendChild(headerLeft);</span>
+<span class="cstat-no" title="statement not covered" >  header.appendChild(headerRight);</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  header.addEventListener('click', onToggle);</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -142,7 +199,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-01-10T11:05:39.574Z
+                at 2026-01-11T01:03:36.602Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

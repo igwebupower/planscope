@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for content/overlay/components/ApplicationList.ts</title>
+    <title>Code coverage report for content/overlay/components/SkeletonLoader.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">content/overlay/components</a> ApplicationList.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">content/overlay/components</a> SkeletonLoader.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/80</span>
+                <span class='fraction'>0/65</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/80</span>
+                <span class='fraction'>0/65</span>
             </div>
         
             
@@ -128,22 +128,7 @@
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
 <a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a>
-<a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a>
-<a name='L81'></a><a href='#L81'>81</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -208,100 +193,70 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import type { PlanningApplication, FilterState } from '../../../types';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import { createApplicationCard } from './ApplicationCard';</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >/**</span>
-<span class="cstat-no" title="statement not covered" > * Application list component that displays filtered planning applications</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >/**</span></span></span>
+<span class="cstat-no" title="statement not covered" > * Skeleton loader component for perceived performance</span>
+<span class="cstat-no" title="statement not covered" > * Shows placeholder content while data is loading</span>
 <span class="cstat-no" title="statement not covered" > */</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export function createApplicationList(</span>
-<span class="cstat-no" title="statement not covered" >  applications: PlanningApplication[],</span>
-<span class="cstat-no" title="statement not covered" >  filters: FilterState</span>
-<span class="cstat-no" title="statement not covered" >): HTMLElement {</span>
+<span class="cstat-no" title="statement not covered" >export function createSkeletonLoader(): HTMLElement {</span>
 <span class="cstat-no" title="statement not covered" >  const container = document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >  container.className = 'planscope-list';</span>
+<span class="cstat-no" title="statement not covered" >  container.className = 'planscope-skeleton-loading';</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Apply filters</span>
-<span class="cstat-no" title="statement not covered" >  const filteredApps = filterApplications(applications, filters);</span>
+<span class="cstat-no" title="statement not covered" >  container.innerHTML = `</span>
+<span class="cstat-no" title="statement not covered" >    &lt;!-- Climate Section Skeleton --&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-skeleton-climate"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class="planscope-skeleton planscope-skeleton-title"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class="planscope-skeleton-grid"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;div class="planscope-skeleton-stat"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div class="planscope-skeleton planscope-skeleton-label"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div class="planscope-skeleton planscope-skeleton-value"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;div class="planscope-skeleton-stat"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div class="planscope-skeleton planscope-skeleton-label"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div class="planscope-skeleton planscope-skeleton-value"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;div class="planscope-skeleton-stat"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div class="planscope-skeleton planscope-skeleton-label"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div class="planscope-skeleton planscope-skeleton-value"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;div class="planscope-skeleton-stat"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div class="planscope-skeleton planscope-skeleton-label"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div class="planscope-skeleton planscope-skeleton-value"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Header with count</span>
-<span class="cstat-no" title="statement not covered" >  const header = document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >  header.className = 'planscope-list-header';</span>
-<span class="cstat-no" title="statement not covered" >  header.innerHTML = `</span>
-<span class="cstat-no" title="statement not covered" >    &lt;span&gt;${filteredApps.length} application${filteredApps.length !== 1 ? 's' : ''} found&lt;/span&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;span&gt;Within 500m&lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;!-- Filters Skeleton --&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-skeleton-filters"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class="planscope-skeleton planscope-skeleton-filter"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class="planscope-skeleton planscope-skeleton-filter"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class="planscope-skeleton planscope-skeleton-filter"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class="planscope-skeleton planscope-skeleton-filter"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    &lt;!-- Application Cards Skeleton --&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-skeleton-list"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      ${createSkeletonCard()}</span>
+<span class="cstat-no" title="statement not covered" >      ${createSkeletonCard()}</span>
+<span class="cstat-no" title="statement not covered" >      ${createSkeletonCard()}</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >  `;</span>
-<span class="cstat-no" title="statement not covered" >  container.appendChild(header);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Empty state</span>
-<span class="cstat-no" title="statement not covered" >  if (filteredApps.length === 0) {</span>
-<span class="cstat-no" title="statement not covered" >    const empty = document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >    empty.className = 'planscope-empty';</span>
-<span class="cstat-no" title="statement not covered" >    empty.textContent = applications.length &gt; 0</span>
-<span class="cstat-no" title="statement not covered" >      ? 'No applications match your filters'</span>
-<span class="cstat-no" title="statement not covered" >      : 'No planning applications found nearby';</span>
-<span class="cstat-no" title="statement not covered" >    container.appendChild(empty);</span>
-<span class="cstat-no" title="statement not covered" >    return container;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Application cards</span>
-<span class="cstat-no" title="statement not covered" >  for (const app of filteredApps) {</span>
-<span class="cstat-no" title="statement not covered" >    container.appendChild(createApplicationCard(app));</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return container;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >function filterApplications(</span>
-<span class="cstat-no" title="statement not covered" >  applications: PlanningApplication[],</span>
-<span class="cstat-no" title="statement not covered" >  filters: FilterState</span>
-<span class="cstat-no" title="statement not covered" >): PlanningApplication[] {</span>
-<span class="cstat-no" title="statement not covered" >  let filtered = [...applications];</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Filter by status</span>
-<span class="cstat-no" title="statement not covered" >  if (filters.status.length &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >    filtered = filtered.filter((app) =&gt; filters.status.includes(app.status));</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Filter by type</span>
-<span class="cstat-no" title="statement not covered" >  if (filters.types.length &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >    filtered = filtered.filter((app) =&gt; filters.types.includes(app.type));</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Filter by date range</span>
-<span class="cstat-no" title="statement not covered" >  if (filters.fromDate) {</span>
-<span class="cstat-no" title="statement not covered" >    const fromDate = new Date(filters.fromDate);</span>
-<span class="cstat-no" title="statement not covered" >    filtered = filtered.filter((app) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if (!app.decision_date) return true;</span>
-<span class="cstat-no" title="statement not covered" >      return new Date(app.decision_date) &gt;= fromDate;</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  if (filters.toDate) {</span>
-<span class="cstat-no" title="statement not covered" >    const toDate = new Date(filters.toDate);</span>
-<span class="cstat-no" title="statement not covered" >    filtered = filtered.filter((app) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if (!app.decision_date) return true;</span>
-<span class="cstat-no" title="statement not covered" >      return new Date(app.decision_date) &lt;= toDate;</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return filtered;</span>
+<span class="cstat-no" title="statement not covered" >function createSkeletonCard(): string {</span>
+<span class="cstat-no" title="statement not covered" >  return `</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-skeleton-card"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class="planscope-skeleton-card-header"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;div class="planscope-skeleton planscope-skeleton-status"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;div class="planscope-skeleton planscope-skeleton-distance"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class="planscope-skeleton planscope-skeleton-address"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class="planscope-skeleton planscope-skeleton-summary"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class="planscope-skeleton planscope-skeleton-summary-short"&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >  `;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 

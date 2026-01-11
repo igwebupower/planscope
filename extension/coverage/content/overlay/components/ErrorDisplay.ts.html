@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for content/overlay/components/MapView.ts</title>
+    <title>Code coverage report for content/overlay/components/ErrorDisplay.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">content/overlay/components</a> MapView.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">content/overlay/components</a> ErrorDisplay.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/156</span>
+                <span class='fraction'>0/146</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/156</span>
+                <span class='fraction'>0/146</span>
             </div>
         
             
@@ -209,17 +209,7 @@
 <a name='L144'></a><a href='#L144'>144</a>
 <a name='L145'></a><a href='#L145'>145</a>
 <a name='L146'></a><a href='#L146'>146</a>
-<a name='L147'></a><a href='#L147'>147</a>
-<a name='L148'></a><a href='#L148'>148</a>
-<a name='L149'></a><a href='#L149'>149</a>
-<a name='L150'></a><a href='#L150'>150</a>
-<a name='L151'></a><a href='#L151'>151</a>
-<a name='L152'></a><a href='#L152'>152</a>
-<a name='L153'></a><a href='#L153'>153</a>
-<a name='L154'></a><a href='#L154'>154</a>
-<a name='L155'></a><a href='#L155'>155</a>
-<a name='L156'></a><a href='#L156'>156</a>
-<a name='L157'></a><a href='#L157'>157</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L147'></a><a href='#L147'>147</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -365,171 +355,151 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import type { PlanningApplication } from '../../../types';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import { STATUS_COLORS } from '../../../types';</span>
-<span class="cstat-no" title="statement not covered" >import { escapeHtml } from '../../../utils';</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >/**</span>
-<span class="cstat-no" title="statement not covered" > * Map view component using Leaflet with OpenStreetMap tiles</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >/**</span></span></span>
+<span class="cstat-no" title="statement not covered" > * Enhanced error display component with specific error types and retry button</span>
 <span class="cstat-no" title="statement not covered" > */</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >// We'll load Leaflet dynamically to avoid bundling issues</span>
-<span class="cstat-no" title="statement not covered" >let leafletLoaded = false;</span>
-<span class="cstat-no" title="statement not covered" >let L: any;</span>
+<span class="cstat-no" title="statement not covered" >import { PlanScopeError, toPlanScopeError } from '../../../services/errors';</span>
+<span class="cstat-no" title="statement not covered" >import { escapeHtml } from '../../../utils';</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const LEAFLET_CSS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';</span>
-<span class="cstat-no" title="statement not covered" >const LEAFLET_JS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >async function loadLeaflet(): Promise&lt;void&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  if (leafletLoaded) return;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Load CSS</span>
-<span class="cstat-no" title="statement not covered" >  const link = document.createElement('link');</span>
-<span class="cstat-no" title="statement not covered" >  link.rel = 'stylesheet';</span>
-<span class="cstat-no" title="statement not covered" >  link.href = LEAFLET_CSS;</span>
-<span class="cstat-no" title="statement not covered" >  document.head.appendChild(link);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Load JS</span>
-<span class="cstat-no" title="statement not covered" >  await new Promise&lt;void&gt;((resolve, reject) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const script = document.createElement('script');</span>
-<span class="cstat-no" title="statement not covered" >    script.src = LEAFLET_JS;</span>
-<span class="cstat-no" title="statement not covered" >    script.onload = () =&gt; resolve();</span>
-<span class="cstat-no" title="statement not covered" >    script.onerror = reject;</span>
-<span class="cstat-no" title="statement not covered" >    document.head.appendChild(script);</span>
-<span class="cstat-no" title="statement not covered" >  });</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  L = (window as any).L;</span>
-<span class="cstat-no" title="statement not covered" >  leafletLoaded = true;</span>
+<span class="cstat-no" title="statement not covered" >interface ErrorDisplayOptions {</span>
+<span class="cstat-no" title="statement not covered" >  error: unknown;</span>
+<span class="cstat-no" title="statement not covered" >  onRetry?: () =&gt; void;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export async function createMapView(</span>
-<span class="cstat-no" title="statement not covered" >  centerLat: number,</span>
-<span class="cstat-no" title="statement not covered" >  centerLng: number,</span>
-<span class="cstat-no" title="statement not covered" >  applications: PlanningApplication[],</span>
-<span class="cstat-no" title="statement not covered" >  shadowRoot: ShadowRoot</span>
-<span class="cstat-no" title="statement not covered" >): Promise&lt;HTMLElement&gt; {</span>
+<span class="cstat-no" title="statement not covered" >export function createErrorDisplay({ error, onRetry }: ErrorDisplayOptions): HTMLElement {</span>
+<span class="cstat-no" title="statement not covered" >  const planScopeError = toPlanScopeError(error);</span>
 <span class="cstat-no" title="statement not covered" >  const container = document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >  container.className = 'planscope-map-container';</span>
+<span class="cstat-no" title="statement not covered" >  container.className = 'planscope-error';</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const mapDiv = document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >  mapDiv.className = 'planscope-map';</span>
-<span class="cstat-no" title="statement not covered" >  mapDiv.id = 'planscope-map-' + Date.now();</span>
-<span class="cstat-no" title="statement not covered" >  container.appendChild(mapDiv);</span>
+<span class="cstat-no" title="statement not covered" >  const icon = getErrorIcon(planScopeError);</span>
+<span class="cstat-no" title="statement not covered" >  const title = getErrorTitle(planScopeError);</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    await loadLeaflet();</span>
+<span class="cstat-no" title="statement not covered" >  container.innerHTML = `</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-error-icon"&gt;${icon}&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-error-title"&gt;${escapeHtml(title)}&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-error-message"&gt;${escapeHtml(planScopeError.userMessage)}&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    ${planScopeError.retryable ? '&lt;button class="planscope-error-retry"&gt;Try Again&lt;/button&gt;' : ''}</span>
+<span class="cstat-no" title="statement not covered" >  `;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    // Inject Leaflet CSS into shadow root</span>
-<span class="cstat-no" title="statement not covered" >    const leafletStyles = document.createElement('link');</span>
-<span class="cstat-no" title="statement not covered" >    leafletStyles.rel = 'stylesheet';</span>
-<span class="cstat-no" title="statement not covered" >    leafletStyles.href = LEAFLET_CSS;</span>
-<span class="cstat-no" title="statement not covered" >    shadowRoot.appendChild(leafletStyles);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    // Wait for element to be in DOM</span>
-<span class="cstat-no" title="statement not covered" >    requestAnimationFrame(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      requestAnimationFrame(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        initializeMap(mapDiv, centerLat, centerLng, applications);</span>
-<span class="cstat-no" title="statement not covered" >      });</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >  } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >    console.error('[PlanScope] Failed to load Leaflet:', error);</span>
-<span class="cstat-no" title="statement not covered" >    mapDiv.innerHTML = '&lt;div style="padding: 20px; text-align: center; color: #6b7280;"&gt;Map unavailable&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >  // Add retry handler</span>
+<span class="cstat-no" title="statement not covered" >  if (planScopeError.retryable &amp;&amp; onRetry) {</span>
+<span class="cstat-no" title="statement not covered" >    const retryButton = container.querySelector('.planscope-error-retry');</span>
+<span class="cstat-no" title="statement not covered" >    if (retryButton) {</span>
+<span class="cstat-no" title="statement not covered" >      retryButton.addEventListener('click', onRetry);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return container;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >function initializeMap(</span>
-<span class="cstat-no" title="statement not covered" >  element: HTMLElement,</span>
-<span class="cstat-no" title="statement not covered" >  centerLat: number,</span>
-<span class="cstat-no" title="statement not covered" >  centerLng: number,</span>
-<span class="cstat-no" title="statement not covered" >  applications: PlanningApplication[]</span>
-<span class="cstat-no" title="statement not covered" >): void {</span>
-<span class="cstat-no" title="statement not covered" >  if (!L) return;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const map = L.map(element, {</span>
-<span class="cstat-no" title="statement not covered" >    zoomControl: true,</span>
-<span class="cstat-no" title="statement not covered" >    scrollWheelZoom: false,</span>
-<span class="cstat-no" title="statement not covered" >  }).setView([centerLat, centerLng], 15);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // OpenStreetMap tiles</span>
-<span class="cstat-no" title="statement not covered" >  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {</span>
-<span class="cstat-no" title="statement not covered" >    attribution: '&amp;copy; OpenStreetMap contributors',</span>
-<span class="cstat-no" title="statement not covered" >    maxZoom: 19,</span>
-<span class="cstat-no" title="statement not covered" >  }).addTo(map);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Property marker (center)</span>
-<span class="cstat-no" title="statement not covered" >  const propertyIcon = L.divIcon({</span>
-<span class="cstat-no" title="statement not covered" >    className: 'planscope-marker-property',</span>
-<span class="cstat-no" title="statement not covered" >    html: `&lt;div style="</span>
-<span class="cstat-no" title="statement not covered" >      width: 24px;</span>
-<span class="cstat-no" title="statement not covered" >      height: 24px;</span>
-<span class="cstat-no" title="statement not covered" >      background: #1f2937;</span>
-<span class="cstat-no" title="statement not covered" >      border: 3px solid white;</span>
-<span class="cstat-no" title="statement not covered" >      border-radius: 50%;</span>
-<span class="cstat-no" title="statement not covered" >      box-shadow: 0 2px 4px rgba(0,0,0,0.3);</span>
-<span class="cstat-no" title="statement not covered" >    "&gt;&lt;/div&gt;`,</span>
-<span class="cstat-no" title="statement not covered" >    iconSize: [24, 24],</span>
-<span class="cstat-no" title="statement not covered" >    iconAnchor: [12, 12],</span>
-<span class="cstat-no" title="statement not covered" >  });</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  L.marker([centerLat, centerLng], { icon: propertyIcon })</span>
-<span class="cstat-no" title="statement not covered" >    .addTo(map)</span>
-<span class="cstat-no" title="statement not covered" >    .bindPopup('This property');</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Application markers</span>
-<span class="cstat-no" title="statement not covered" >  for (const app of applications) {</span>
-<span class="cstat-no" title="statement not covered" >    const color = STATUS_COLORS[app.status];</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    const icon = L.divIcon({</span>
-<span class="cstat-no" title="statement not covered" >      className: 'planscope-marker-app',</span>
-<span class="cstat-no" title="statement not covered" >      html: `&lt;div style="</span>
-<span class="cstat-no" title="statement not covered" >        width: 16px;</span>
-<span class="cstat-no" title="statement not covered" >        height: 16px;</span>
-<span class="cstat-no" title="statement not covered" >        background: ${color};</span>
-<span class="cstat-no" title="statement not covered" >        border: 2px solid white;</span>
-<span class="cstat-no" title="statement not covered" >        border-radius: 50%;</span>
-<span class="cstat-no" title="statement not covered" >        box-shadow: 0 1px 3px rgba(0,0,0,0.3);</span>
-<span class="cstat-no" title="statement not covered" >      "&gt;&lt;/div&gt;`,</span>
-<span class="cstat-no" title="statement not covered" >      iconSize: [16, 16],</span>
-<span class="cstat-no" title="statement not covered" >      iconAnchor: [8, 8],</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    L.marker([app.lat, app.lng], { icon })</span>
-<span class="cstat-no" title="statement not covered" >      .addTo(map)</span>
-<span class="cstat-no" title="statement not covered" >      .bindPopup(`</span>
-<span class="cstat-no" title="statement not covered" >        &lt;strong&gt;${escapeHtml(app.address)}&lt;/strong&gt;&lt;br&gt;</span>
-<span class="cstat-no" title="statement not covered" >        ${escapeHtml(app.summary)}&lt;br&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;em&gt;${escapeHtml(app.status)}&lt;/em&gt;</span>
-<span class="cstat-no" title="statement not covered" >      `);</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Fit bounds to show all markers</span>
-<span class="cstat-no" title="statement not covered" >  if (applications.length &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >    const bounds = L.latLngBounds([</span>
-<span class="cstat-no" title="statement not covered" >      [centerLat, centerLng],</span>
-<span class="cstat-no" title="statement not covered" >      ...applications.map((app) =&gt; [app.lat, app.lng]),</span>
-<span class="cstat-no" title="statement not covered" >    ]);</span>
-<span class="cstat-no" title="statement not covered" >    map.fitBounds(bounds, { padding: [20, 20] });</span>
+<span class="cstat-no" title="statement not covered" >function getErrorIcon(error: PlanScopeError): string {</span>
+<span class="cstat-no" title="statement not covered" >  switch (error.code) {</span>
+<span class="cstat-no" title="statement not covered" >    case 'OFFLINE_ERROR':</span>
+<span class="cstat-no" title="statement not covered" >      return '&amp;#128268;'; // wifi off symbol</span>
+<span class="cstat-no" title="statement not covered" >    case 'TIMEOUT_ERROR':</span>
+<span class="cstat-no" title="statement not covered" >      return '&amp;#9203;'; // clock</span>
+<span class="cstat-no" title="statement not covered" >    case 'RATE_LIMIT_ERROR':</span>
+<span class="cstat-no" title="statement not covered" >      return '&amp;#128683;'; // stop sign</span>
+<span class="cstat-no" title="statement not covered" >    case 'NETWORK_ERROR':</span>
+<span class="cstat-no" title="statement not covered" >      return '&amp;#127760;'; // globe</span>
+<span class="cstat-no" title="statement not covered" >    default:</span>
+<span class="cstat-no" title="statement not covered" >      return '&amp;#9888;'; // warning triangle</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export function updateMapView(</span>
-<span class="cstat-no" title="statement not covered" >  _container: HTMLElement,</span>
-<span class="cstat-no" title="statement not covered" >  _applications: PlanningApplication[]</span>
-<span class="cstat-no" title="statement not covered" >): void {</span>
-<span class="cstat-no" title="statement not covered" >  // For now, map doesn't update dynamically</span>
-<span class="cstat-no" title="statement not covered" >  // Would need to store map reference and update markers</span>
+<span class="cstat-no" title="statement not covered" >function getErrorTitle(error: PlanScopeError): string {</span>
+<span class="cstat-no" title="statement not covered" >  switch (error.code) {</span>
+<span class="cstat-no" title="statement not covered" >    case 'OFFLINE_ERROR':</span>
+<span class="cstat-no" title="statement not covered" >      return 'You\'re Offline';</span>
+<span class="cstat-no" title="statement not covered" >    case 'TIMEOUT_ERROR':</span>
+<span class="cstat-no" title="statement not covered" >      return 'Request Timed Out';</span>
+<span class="cstat-no" title="statement not covered" >    case 'RATE_LIMIT_ERROR':</span>
+<span class="cstat-no" title="statement not covered" >      return 'Too Many Requests';</span>
+<span class="cstat-no" title="statement not covered" >    case 'NETWORK_ERROR':</span>
+<span class="cstat-no" title="statement not covered" >      return 'Connection Error';</span>
+<span class="cstat-no" title="statement not covered" >    case 'API_ERROR':</span>
+<span class="cstat-no" title="statement not covered" >      return 'Service Unavailable';</span>
+<span class="cstat-no" title="statement not covered" >    case 'PARSE_ERROR':</span>
+<span class="cstat-no" title="statement not covered" >      return 'Data Error';</span>
+<span class="cstat-no" title="statement not covered" >    default:</span>
+<span class="cstat-no" title="statement not covered" >      return 'Something Went Wrong';</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/**</span>
+<span class="cstat-no" title="statement not covered" > * Create an offline banner to show when using cached data</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" >export function createOfflineBanner(): HTMLElement {</span>
+<span class="cstat-no" title="statement not covered" >  const banner = document.createElement('div');</span>
+<span class="cstat-no" title="statement not covered" >  banner.className = 'planscope-offline-banner';</span>
+<span class="cstat-no" title="statement not covered" >  banner.innerHTML = `</span>
+<span class="cstat-no" title="statement not covered" >    &lt;svg class="planscope-offline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;line x1="1" y1="1" x2="23" y2="23"&gt;&lt;/line&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"&gt;&lt;/path&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"&gt;&lt;/path&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;path d="M10.71 5.05A16 16 0 0 1 22.58 9"&gt;&lt;/path&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"&gt;&lt;/path&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;path d="M8.53 16.11a6 6 0 0 1 6.95 0"&gt;&lt;/path&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;line x1="12" y1="20" x2="12.01" y2="20"&gt;&lt;/line&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/svg&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;span&gt;You're offline. Showing cached data.&lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >  `;</span>
+<span class="cstat-no" title="statement not covered" >  return banner;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/**</span>
+<span class="cstat-no" title="statement not covered" > * Create a rate limit warning with countdown timer</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" >export function createRateLimitWarning(retryAfterMs: number, onRetry?: () =&gt; void): HTMLElement {</span>
+<span class="cstat-no" title="statement not covered" >  const container = document.createElement('div');</span>
+<span class="cstat-no" title="statement not covered" >  container.className = 'planscope-rate-limit';</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  let remainingSeconds = Math.ceil(retryAfterMs / 1000);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  const updateTimer = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const timerEl = container.querySelector('.planscope-rate-limit-timer');</span>
+<span class="cstat-no" title="statement not covered" >    if (timerEl) {</span>
+<span class="cstat-no" title="statement not covered" >      timerEl.textContent = `${remainingSeconds}s`;</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  container.innerHTML = `</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-rate-limit-icon"&gt;&amp;#9203;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-rate-limit-title"&gt;Rate Limited&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-rate-limit-message"&gt;Please wait before trying again&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div class="planscope-rate-limit-timer"&gt;${remainingSeconds}s&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >  `;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  // Countdown timer</span>
+<span class="cstat-no" title="statement not covered" >  const interval = setInterval(() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    remainingSeconds--;</span>
+<span class="cstat-no" title="statement not covered" >    if (remainingSeconds &lt;= 0) {</span>
+<span class="cstat-no" title="statement not covered" >      clearInterval(interval);</span>
+<span class="cstat-no" title="statement not covered" >      if (onRetry) {</span>
+<span class="cstat-no" title="statement not covered" >        onRetry();</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >    } else {</span>
+<span class="cstat-no" title="statement not covered" >      updateTimer();</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }, 1000);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return container;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/**</span>
+<span class="cstat-no" title="statement not covered" > * Create a cache indicator badge</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" >export function createCacheBadge(): HTMLElement {</span>
+<span class="cstat-no" title="statement not covered" >  const badge = document.createElement('span');</span>
+<span class="cstat-no" title="statement not covered" >  badge.className = 'planscope-cache-badge';</span>
+<span class="cstat-no" title="statement not covered" >  badge.innerHTML = `</span>
+<span class="cstat-no" title="statement not covered" >    &lt;svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/svg&gt;</span>
+<span class="cstat-no" title="statement not covered" >    Cached</span>
+<span class="cstat-no" title="statement not covered" >  `;</span>
+<span class="cstat-no" title="statement not covered" >  return badge;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 

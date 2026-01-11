@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { fetchPlanningData, checkApiHealth, setUseMockApi, setUseCache } from '../../services/api';
+import { fetchPlanningData, checkApiHealth, setUseMockApi, setUseCache, setUseMockFallback } from '../../services/api';
 
 /**
  * Helper to create a proper mock Response with both text() and json() methods
@@ -68,6 +68,8 @@ describe('API Service', () => {
     setUseMockApi(false);
     // Disable caching for tests
     setUseCache(false);
+    // Disable mock fallback to test actual error handling
+    setUseMockFallback(false);
   });
 
   describe('fetchPlanningData', () => {

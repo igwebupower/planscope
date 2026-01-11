@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for content/overlay/Overlay.ts</title>
+    <title>Code coverage report for services/usage.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">content/overlay</a> Overlay.ts</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">services</a> usage.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/211</span>
+                <span class='fraction'>0/199</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/211</span>
+                <span class='fraction'>0/199</span>
             </div>
         
             
@@ -262,19 +262,7 @@
 <a name='L197'></a><a href='#L197'>197</a>
 <a name='L198'></a><a href='#L198'>198</a>
 <a name='L199'></a><a href='#L199'>199</a>
-<a name='L200'></a><a href='#L200'>200</a>
-<a name='L201'></a><a href='#L201'>201</a>
-<a name='L202'></a><a href='#L202'>202</a>
-<a name='L203'></a><a href='#L203'>203</a>
-<a name='L204'></a><a href='#L204'>204</a>
-<a name='L205'></a><a href='#L205'>205</a>
-<a name='L206'></a><a href='#L206'>206</a>
-<a name='L207'></a><a href='#L207'>207</a>
-<a name='L208'></a><a href='#L208'>208</a>
-<a name='L209'></a><a href='#L209'>209</a>
-<a name='L210'></a><a href='#L210'>210</a>
-<a name='L211'></a><a href='#L211'>211</a>
-<a name='L212'></a><a href='#L212'>212</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L200'></a><a href='#L200'>200</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -473,228 +461,204 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import type { OverlayState, FilterState } from '../../types';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import { getOverlayStyles } from './styles';</span>
-<span class="cstat-no" title="statement not covered" >import { createHeader } from './components/Header';</span>
-<span class="cstat-no" title="statement not covered" >import { createClimateSummary } from './components/ClimateSummary';</span>
-<span class="cstat-no" title="statement not covered" >import { createFilters } from './components/Filters';</span>
-<span class="cstat-no" title="statement not covered" >import { createApplicationList } from './components/ApplicationList';</span>
-<span class="cstat-no" title="statement not covered" >import { createMapView } from './components/MapView';</span>
-<span class="cstat-no" title="statement not covered" >import { createInsights } from './components/Insights';</span>
-<span class="cstat-no" title="statement not covered" >import { createConstraints } from './components/Constraints';</span>
-<span class="cstat-no" title="statement not covered" >import { createSkeletonLoader } from './components/SkeletonLoader';</span>
-<span class="cstat-no" title="statement not covered" >import { createErrorDisplay, createOfflineBanner } from './components/ErrorDisplay';</span>
-<span class="cstat-no" title="statement not covered" >import { createUpgradePrompt, getUpgradePromptStyles } from './components/UpgradePrompt';</span>
-<span class="cstat-no" title="statement not covered" >import { getUsageIndicatorStyles } from './components/UsageIndicator';</span>
-<span class="cstat-no" title="statement not covered" >import { generateInsights } from '../../services/insights';</span>
-<span class="cstat-no" title="statement not covered" >import { isOnline } from '../../services/errors';</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >/**</span></span></span>
+<span class="cstat-no" title="statement not covered" > * Usage tracking service for PlanScope</span>
+<span class="cstat-no" title="statement not covered" > * Manages monthly lookup limits and subscription tiers</span>
+<span class="cstat-no" title="statement not covered" > */</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >interface OverlayCallbacks {</span>
-<span class="cstat-no" title="statement not covered" >  onToggle: (isOpen: boolean) =&gt; void;</span>
-<span class="cstat-no" title="statement not covered" >  onFilterChange: (filters: FilterState) =&gt; void;</span>
-<span class="cstat-no" title="statement not covered" >  onRetry?: () =&gt; void;</span>
+<span class="cstat-no" title="statement not covered" >// Subscription tier types</span>
+<span class="cstat-no" title="statement not covered" >export type SubscriptionTier = 'free' | 'pro';</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >// Usage data stored in chrome.storage.sync</span>
+<span class="cstat-no" title="statement not covered" >export interface UsageData {</span>
+<span class="cstat-no" title="statement not covered" >  monthlyLookups: number;</span>
+<span class="cstat-no" title="statement not covered" >  resetDate: string; // ISO date string</span>
+<span class="cstat-no" title="statement not covered" >  tier: SubscriptionTier;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >interface OverlayInstance {</span>
-<span class="cstat-no" title="statement not covered" >  update: (state: OverlayState) =&gt; void;</span>
-<span class="cstat-no" title="statement not covered" >  destroy: () =&gt; void;</span>
+<span class="cstat-no" title="statement not covered" >// Usage limits per tier</span>
+<span class="cstat-no" title="statement not covered" >const USAGE_LIMITS: Record&lt;SubscriptionTier, number&gt; = {</span>
+<span class="cstat-no" title="statement not covered" >  free: 10,</span>
+<span class="cstat-no" title="statement not covered" >  pro: Infinity,</span>
+<span class="cstat-no" title="statement not covered" >};</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >// Reset period in days</span>
+<span class="cstat-no" title="statement not covered" >const RESET_PERIOD_DAYS = 30;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >// Storage key</span>
+<span class="cstat-no" title="statement not covered" >const STORAGE_KEY = 'planscope_usage';</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/**</span>
+<span class="cstat-no" title="statement not covered" > * Get default usage data for new users</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" >function getDefaultUsageData(): UsageData {</span>
+<span class="cstat-no" title="statement not covered" >  const resetDate = new Date();</span>
+<span class="cstat-no" title="statement not covered" >  resetDate.setDate(resetDate.getDate() + RESET_PERIOD_DAYS);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return {</span>
+<span class="cstat-no" title="statement not covered" >    monthlyLookups: 0,</span>
+<span class="cstat-no" title="statement not covered" >    resetDate: resetDate.toISOString(),</span>
+<span class="cstat-no" title="statement not covered" >    tier: 'free',</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >/**</span>
-<span class="cstat-no" title="statement not covered" > * Create and inject the PlanScope overlay into the page</span>
-<span class="cstat-no" title="statement not covered" > * Uses Shadow DOM for style isolation</span>
+<span class="cstat-no" title="statement not covered" > * Get current usage data from storage</span>
 <span class="cstat-no" title="statement not covered" > */</span>
-<span class="cstat-no" title="statement not covered" >export function createOverlay(</span>
-<span class="cstat-no" title="statement not covered" >  initialState: OverlayState,</span>
-<span class="cstat-no" title="statement not covered" >  callbacks: OverlayCallbacks</span>
-<span class="cstat-no" title="statement not covered" >): OverlayInstance {</span>
-<span class="cstat-no" title="statement not covered" >  // Create host element</span>
-<span class="cstat-no" title="statement not covered" >  const host = document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >  host.id = 'planscope-overlay-host';</span>
+<span class="cstat-no" title="statement not covered" >export async function getUsageData(): Promise&lt;UsageData&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const result = await chrome.storage.sync.get(STORAGE_KEY);</span>
+<span class="cstat-no" title="statement not covered" >  const data = result[STORAGE_KEY] as UsageData | undefined;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Attach shadow root (closed mode for better isolation)</span>
-<span class="cstat-no" title="statement not covered" >  const shadow = host.attachShadow({ mode: 'closed' });</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Inject styles (base + component styles)</span>
-<span class="cstat-no" title="statement not covered" >  const styleElement = document.createElement('style');</span>
-<span class="cstat-no" title="statement not covered" >  styleElement.textContent = getOverlayStyles() + getUsageIndicatorStyles() + getUpgradePromptStyles();</span>
-<span class="cstat-no" title="statement not covered" >  shadow.appendChild(styleElement);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Create main container</span>
-<span class="cstat-no" title="statement not covered" >  const container = document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >  container.className = 'planscope-container';</span>
-<span class="cstat-no" title="statement not covered" >  if (!initialState.isOpen) {</span>
-<span class="cstat-no" title="statement not covered" >    container.classList.add('collapsed');</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >  shadow.appendChild(container);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // State reference for updates</span>
-<span class="cstat-no" title="statement not covered" >  let currentState = { ...initialState };</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Toggle handler</span>
-<span class="cstat-no" title="statement not covered" >  const handleToggle = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    currentState.isOpen = !currentState.isOpen;</span>
-<span class="cstat-no" title="statement not covered" >    container.classList.toggle('collapsed', !currentState.isOpen);</span>
-<span class="cstat-no" title="statement not covered" >    callbacks.onToggle(currentState.isOpen);</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Filter change handler</span>
-<span class="cstat-no" title="statement not covered" >  const handleFilterChange = (filters: FilterState) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    currentState.filters = filters;</span>
-<span class="cstat-no" title="statement not covered" >    callbacks.onFilterChange(filters);</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Retry handler</span>
-<span class="cstat-no" title="statement not covered" >  const handleRetry = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (callbacks.onRetry) {</span>
-<span class="cstat-no" title="statement not covered" >      callbacks.onRetry();</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Create body</span>
-<span class="cstat-no" title="statement not covered" >  const body = document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >  body.className = 'planscope-body';</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Header reference for updates</span>
-<span class="cstat-no" title="statement not covered" >  let headerElement: HTMLElement | null = null;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Render the entire overlay content</span>
-<span class="cstat-no" title="statement not covered" >  function render() {</span>
-<span class="cstat-no" title="statement not covered" >    // Update or create header</span>
-<span class="cstat-no" title="statement not covered" >    if (headerElement) {</span>
-<span class="cstat-no" title="statement not covered" >      const newHeader = createHeader(handleToggle, currentState.usageStatus);</span>
-<span class="cstat-no" title="statement not covered" >      container.replaceChild(newHeader, headerElement);</span>
-<span class="cstat-no" title="statement not covered" >      headerElement = newHeader;</span>
-<span class="cstat-no" title="statement not covered" >    } else {</span>
-<span class="cstat-no" title="statement not covered" >      headerElement = createHeader(handleToggle, currentState.usageStatus);</span>
-<span class="cstat-no" title="statement not covered" >      container.appendChild(headerElement);</span>
-<span class="cstat-no" title="statement not covered" >      container.appendChild(body);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    renderBody();</span>
+<span class="cstat-no" title="statement not covered" >  if (!data) {</span>
+<span class="cstat-no" title="statement not covered" >    // Initialize for new users</span>
+<span class="cstat-no" title="statement not covered" >    const defaultData = getDefaultUsageData();</span>
+<span class="cstat-no" title="statement not covered" >    await chrome.storage.sync.set({ [STORAGE_KEY]: defaultData });</span>
+<span class="cstat-no" title="statement not covered" >    return defaultData;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Render body content</span>
-<span class="cstat-no" title="statement not covered" >  function renderBody() {</span>
-<span class="cstat-no" title="statement not covered" >    body.innerHTML = '';</span>
+<span class="cstat-no" title="statement not covered" >  return data;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    // Loading state - show skeleton loader instead of spinner</span>
-<span class="cstat-no" title="statement not covered" >    if (currentState.isLoading) {</span>
-<span class="cstat-no" title="statement not covered" >      const skeleton = createSkeletonLoader();</span>
-<span class="cstat-no" title="statement not covered" >      body.appendChild(skeleton);</span>
-<span class="cstat-no" title="statement not covered" >      return;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >/**</span>
+<span class="cstat-no" title="statement not covered" > * Check if reset date has passed and reset if needed</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" >export async function checkAndResetMonthly(): Promise&lt;UsageData&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const data = await getUsageData();</span>
+<span class="cstat-no" title="statement not covered" >  const now = new Date();</span>
+<span class="cstat-no" title="statement not covered" >  const resetDate = new Date(data.resetDate);</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    // Limit reached - show upgrade prompt</span>
-<span class="cstat-no" title="statement not covered" >    if (currentState.limitReached) {</span>
-<span class="cstat-no" title="statement not covered" >      const upgradePrompt = createUpgradePrompt(currentState.usageStatus);</span>
-<span class="cstat-no" title="statement not covered" >      body.appendChild(upgradePrompt);</span>
-<span class="cstat-no" title="statement not covered" >      return;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  if (now &gt;= resetDate) {</span>
+<span class="cstat-no" title="statement not covered" >    // Reset the counter</span>
+<span class="cstat-no" title="statement not covered" >    const newResetDate = new Date();</span>
+<span class="cstat-no" title="statement not covered" >    newResetDate.setDate(newResetDate.getDate() + RESET_PERIOD_DAYS);</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    // Error state - show enhanced error display</span>
-<span class="cstat-no" title="statement not covered" >    if (currentState.error) {</span>
-<span class="cstat-no" title="statement not covered" >      const errorDisplay = createErrorDisplay({</span>
-<span class="cstat-no" title="statement not covered" >        error: currentState.error,</span>
-<span class="cstat-no" title="statement not covered" >        onRetry: handleRetry,</span>
-<span class="cstat-no" title="statement not covered" >      });</span>
-<span class="cstat-no" title="statement not covered" >      body.appendChild(errorDisplay);</span>
-<span class="cstat-no" title="statement not covered" >      return;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >    const updatedData: UsageData = {</span>
+<span class="cstat-no" title="statement not covered" >      ...data,</span>
+<span class="cstat-no" title="statement not covered" >      monthlyLookups: 0,</span>
+<span class="cstat-no" title="statement not covered" >      resetDate: newResetDate.toISOString(),</span>
+<span class="cstat-no" title="statement not covered" >    };</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    // Data loaded</span>
-<span class="cstat-no" title="statement not covered" >    if (currentState.data) {</span>
-<span class="cstat-no" title="statement not covered" >      // Show offline banner if using cached data while offline</span>
-<span class="cstat-no" title="statement not covered" >      if (!isOnline()) {</span>
-<span class="cstat-no" title="statement not covered" >        const offlineBanner = createOfflineBanner();</span>
-<span class="cstat-no" title="statement not covered" >        body.appendChild(offlineBanner);</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      // Climate summary</span>
-<span class="cstat-no" title="statement not covered" >      const climate = createClimateSummary(currentState.data.local_authority);</span>
-<span class="cstat-no" title="statement not covered" >      body.appendChild(climate);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      // Planning constraints (from Planning Data Platform)</span>
-<span class="cstat-no" title="statement not covered" >      if (currentState.data.constraints) {</span>
-<span class="cstat-no" title="statement not covered" >        const constraintsEl = createConstraints(currentState.data.constraints);</span>
-<span class="cstat-no" title="statement not covered" >        body.appendChild(constraintsEl);</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      // Insights</span>
-<span class="cstat-no" title="statement not covered" >      const insights = generateInsights(</span>
-<span class="cstat-no" title="statement not covered" >        currentState.data.applications,</span>
-<span class="cstat-no" title="statement not covered" >        currentState.data.local_authority</span>
-<span class="cstat-no" title="statement not covered" >      );</span>
-<span class="cstat-no" title="statement not covered" >      if (insights.length &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >        const insightsEl = createInsights(insights);</span>
-<span class="cstat-no" title="statement not covered" >        body.appendChild(insightsEl);</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      // Map view</span>
-<span class="cstat-no" title="statement not covered" >      if (currentState.data.applications.length &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >        // Calculate center from applications</span>
-<span class="cstat-no" title="statement not covered" >        const centerLat = currentState.data.applications.reduce((sum, app) =&gt; sum + app.lat, 0) / currentState.data.applications.length;</span>
-<span class="cstat-no" title="statement not covered" >        const centerLng = currentState.data.applications.reduce((sum, app) =&gt; sum + app.lng, 0) / currentState.data.applications.length;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        createMapView(centerLat, centerLng, currentState.data.applications, shadow).then((mapContainer) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          // Insert map after constraints (or climate if no constraints)</span>
-<span class="cstat-no" title="statement not covered" >          const insertAfter = body.querySelector('.planscope-constraints') || body.querySelector('.planscope-climate');</span>
-<span class="cstat-no" title="statement not covered" >          if (insertAfter &amp;&amp; insertAfter.nextSibling) {</span>
-<span class="cstat-no" title="statement not covered" >            body.insertBefore(mapContainer, insertAfter.nextSibling);</span>
-<span class="cstat-no" title="statement not covered" >          } else {</span>
-<span class="cstat-no" title="statement not covered" >            body.insertBefore(mapContainer, body.children[2] || null);</span>
-<span class="cstat-no" title="statement not covered" >          }</span>
-<span class="cstat-no" title="statement not covered" >        });</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      // Filters</span>
-<span class="cstat-no" title="statement not covered" >      const filters = createFilters(currentState.filters, handleFilterChange);</span>
-<span class="cstat-no" title="statement not covered" >      body.appendChild(filters);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      // Application list</span>
-<span class="cstat-no" title="statement not covered" >      const list = createApplicationList(currentState.data.applications, currentState.filters);</span>
-<span class="cstat-no" title="statement not covered" >      body.appendChild(list);</span>
-<span class="cstat-no" title="statement not covered" >    } else {</span>
-<span class="cstat-no" title="statement not covered" >      body.innerHTML = `</span>
-<span class="cstat-no" title="statement not covered" >        &lt;div class="planscope-empty"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          No data available</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >      `;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >    await chrome.storage.sync.set({ [STORAGE_KEY]: updatedData });</span>
+<span class="cstat-no" title="statement not covered" >    console.log('[PlanScope Usage] Monthly counter reset');</span>
+<span class="cstat-no" title="statement not covered" >    return updatedData;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Initial render</span>
-<span class="cstat-no" title="statement not covered" >  render();</span>
+<span class="cstat-no" title="statement not covered" >  return data;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Inject into page</span>
-<span class="cstat-no" title="statement not covered" >  document.body.appendChild(host);</span>
+<span class="cstat-no" title="statement not covered" >/**</span>
+<span class="cstat-no" title="statement not covered" > * Check if user can perform a lookup (under limit)</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" >export async function canPerformLookup(): Promise&lt;boolean&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const data = await checkAndResetMonthly();</span>
+<span class="cstat-no" title="statement not covered" >  const limit = USAGE_LIMITS[data.tier];</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  console.log('[PlanScope] Overlay injected');</span>
+<span class="cstat-no" title="statement not covered" >  return data.monthlyLookups &lt; limit;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Return interface</span>
+<span class="cstat-no" title="statement not covered" >/**</span>
+<span class="cstat-no" title="statement not covered" > * Increment the lookup counter</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" >export async function incrementLookup(): Promise&lt;UsageData&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const data = await checkAndResetMonthly();</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  const updatedData: UsageData = {</span>
+<span class="cstat-no" title="statement not covered" >    ...data,</span>
+<span class="cstat-no" title="statement not covered" >    monthlyLookups: data.monthlyLookups + 1,</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  await chrome.storage.sync.set({ [STORAGE_KEY]: updatedData });</span>
+<span class="cstat-no" title="statement not covered" >  console.log('[PlanScope Usage] Lookup count:', updatedData.monthlyLookups);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return updatedData;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/**</span>
+<span class="cstat-no" title="statement not covered" > * Get remaining lookups for display</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" >export async function getRemainingLookups(): Promise&lt;{ remaining: number; limit: number; isUnlimited: boolean }&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const data = await checkAndResetMonthly();</span>
+<span class="cstat-no" title="statement not covered" >  const limit = USAGE_LIMITS[data.tier];</span>
+<span class="cstat-no" title="statement not covered" >  const isUnlimited = limit === Infinity;</span>
+<span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return {</span>
-<span class="cstat-no" title="statement not covered" >    update: (newState: OverlayState) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      currentState = { ...newState };</span>
-<span class="cstat-no" title="statement not covered" >      container.classList.toggle('collapsed', !currentState.isOpen);</span>
-<span class="cstat-no" title="statement not covered" >      render();</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >    destroy: () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      host.remove();</span>
-<span class="cstat-no" title="statement not covered" >      console.log('[PlanScope] Overlay destroyed');</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >    remaining: isUnlimited ? Infinity : Math.max(0, limit - data.monthlyLookups),</span>
+<span class="cstat-no" title="statement not covered" >    limit: isUnlimited ? Infinity : limit,</span>
+<span class="cstat-no" title="statement not covered" >    isUnlimited,</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/**</span>
+<span class="cstat-no" title="statement not covered" > * Get days until reset</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" >export async function getDaysUntilReset(): Promise&lt;number&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const data = await getUsageData();</span>
+<span class="cstat-no" title="statement not covered" >  const now = new Date();</span>
+<span class="cstat-no" title="statement not covered" >  const resetDate = new Date(data.resetDate);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  const diffMs = resetDate.getTime() - now.getTime();</span>
+<span class="cstat-no" title="statement not covered" >  const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return Math.max(0, diffDays);</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/**</span>
+<span class="cstat-no" title="statement not covered" > * Set subscription tier (for future Stripe integration)</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" >export async function setTier(tier: SubscriptionTier): Promise&lt;UsageData&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const data = await getUsageData();</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  const updatedData: UsageData = {</span>
+<span class="cstat-no" title="statement not covered" >    ...data,</span>
+<span class="cstat-no" title="statement not covered" >    tier,</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  await chrome.storage.sync.set({ [STORAGE_KEY]: updatedData });</span>
+<span class="cstat-no" title="statement not covered" >  console.log('[PlanScope Usage] Tier updated to:', tier);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return updatedData;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/**</span>
+<span class="cstat-no" title="statement not covered" > * Get full usage status for UI display</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" >export async function getUsageStatus(): Promise&lt;{</span>
+<span class="cstat-no" title="statement not covered" >  used: number;</span>
+<span class="cstat-no" title="statement not covered" >  limit: number;</span>
+<span class="cstat-no" title="statement not covered" >  remaining: number;</span>
+<span class="cstat-no" title="statement not covered" >  isUnlimited: boolean;</span>
+<span class="cstat-no" title="statement not covered" >  tier: SubscriptionTier;</span>
+<span class="cstat-no" title="statement not covered" >  daysUntilReset: number;</span>
+<span class="cstat-no" title="statement not covered" >  resetDate: string;</span>
+<span class="cstat-no" title="statement not covered" >}&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const data = await checkAndResetMonthly();</span>
+<span class="cstat-no" title="statement not covered" >  const limit = USAGE_LIMITS[data.tier];</span>
+<span class="cstat-no" title="statement not covered" >  const isUnlimited = limit === Infinity;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  const now = new Date();</span>
+<span class="cstat-no" title="statement not covered" >  const resetDate = new Date(data.resetDate);</span>
+<span class="cstat-no" title="statement not covered" >  const diffMs = resetDate.getTime() - now.getTime();</span>
+<span class="cstat-no" title="statement not covered" >  const daysUntilReset = Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return {</span>
+<span class="cstat-no" title="statement not covered" >    used: data.monthlyLookups,</span>
+<span class="cstat-no" title="statement not covered" >    limit: isUnlimited ? Infinity : limit,</span>
+<span class="cstat-no" title="statement not covered" >    remaining: isUnlimited ? Infinity : Math.max(0, limit - data.monthlyLookups),</span>
+<span class="cstat-no" title="statement not covered" >    isUnlimited,</span>
+<span class="cstat-no" title="statement not covered" >    tier: data.tier,</span>
+<span class="cstat-no" title="statement not covered" >    daysUntilReset,</span>
+<span class="cstat-no" title="statement not covered" >    resetDate: data.resetDate,</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/**</span>
+<span class="cstat-no" title="statement not covered" > * Reset usage data (for testing/debugging)</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" >export async function resetUsageData(): Promise&lt;UsageData&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const defaultData = getDefaultUsageData();</span>
+<span class="cstat-no" title="statement not covered" >  await chrome.storage.sync.set({ [STORAGE_KEY]: defaultData });</span>
+<span class="cstat-no" title="statement not covered" >  console.log('[PlanScope Usage] Usage data reset');</span>
+<span class="cstat-no" title="statement not covered" >  return defaultData;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
@@ -705,14 +669,14 @@
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2026-01-11T01:03:36.602Z
             </div>
-        <script src="../../prettify.js"></script>
+        <script src="../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
     </body>
 </html>
     

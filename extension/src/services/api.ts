@@ -741,3 +741,10 @@ export function setUseCache(useCache: boolean): void {
 export function isCacheEnabled(): boolean {
   return CONFIG.USE_CACHE && isCacheAvailable();
 }
+
+/**
+ * Toggle mock fallback on/off (for testing)
+ */
+export function setUseMockFallback(useFallback: boolean): void {
+  CONFIG.USE_MOCK_FALLBACK = useFallback;
+}

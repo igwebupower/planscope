@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for content/overlay/components/ApplicationList.ts</title>
+    <title>Code coverage report for content/overlay/components/UsageIndicator.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">content/overlay/components</a> ApplicationList.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">content/overlay/components</a> UsageIndicator.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/80</span>
+                <span class='fraction'>0/91</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/80</span>
+                <span class='fraction'>0/91</span>
             </div>
         
             
@@ -143,7 +143,18 @@
 <a name='L78'></a><a href='#L78'>78</a>
 <a name='L79'></a><a href='#L79'>79</a>
 <a name='L80'></a><a href='#L80'>80</a>
-<a name='L81'></a><a href='#L81'>81</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -223,85 +234,107 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import type { PlanningApplication, FilterState } from '../../../types';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import { createApplicationCard } from './ApplicationCard';</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >/**</span>
-<span class="cstat-no" title="statement not covered" > * Application list component that displays filtered planning applications</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >/**</span></span></span>
+<span class="cstat-no" title="statement not covered" > * Usage indicator component for the overlay header</span>
+<span class="cstat-no" title="statement not covered" > * Shows remaining lookups for free tier or "Unlimited" for pro tier</span>
 <span class="cstat-no" title="statement not covered" > */</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export function createApplicationList(</span>
-<span class="cstat-no" title="statement not covered" >  applications: PlanningApplication[],</span>
-<span class="cstat-no" title="statement not covered" >  filters: FilterState</span>
-<span class="cstat-no" title="statement not covered" >): HTMLElement {</span>
+<span class="cstat-no" title="statement not covered" >import type { UsageStatus } from '../../../types';</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export function createUsageIndicator(status: UsageStatus | undefined): HTMLElement {</span>
 <span class="cstat-no" title="statement not covered" >  const container = document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >  container.className = 'planscope-list';</span>
+<span class="cstat-no" title="statement not covered" >  container.className = 'planscope-usage-indicator';</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Apply filters</span>
-<span class="cstat-no" title="statement not covered" >  const filteredApps = filterApplications(applications, filters);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Header with count</span>
-<span class="cstat-no" title="statement not covered" >  const header = document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >  header.className = 'planscope-list-header';</span>
-<span class="cstat-no" title="statement not covered" >  header.innerHTML = `</span>
-<span class="cstat-no" title="statement not covered" >    &lt;span&gt;${filteredApps.length} application${filteredApps.length !== 1 ? 's' : ''} found&lt;/span&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;span&gt;Within 500m&lt;/span&gt;</span>
-<span class="cstat-no" title="statement not covered" >  `;</span>
-<span class="cstat-no" title="statement not covered" >  container.appendChild(header);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Empty state</span>
-<span class="cstat-no" title="statement not covered" >  if (filteredApps.length === 0) {</span>
-<span class="cstat-no" title="statement not covered" >    const empty = document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >    empty.className = 'planscope-empty';</span>
-<span class="cstat-no" title="statement not covered" >    empty.textContent = applications.length &gt; 0</span>
-<span class="cstat-no" title="statement not covered" >      ? 'No applications match your filters'</span>
-<span class="cstat-no" title="statement not covered" >      : 'No planning applications found nearby';</span>
-<span class="cstat-no" title="statement not covered" >    container.appendChild(empty);</span>
+<span class="cstat-no" title="statement not covered" >  if (!status) {</span>
+<span class="cstat-no" title="statement not covered" >    // Show loading state or nothing</span>
 <span class="cstat-no" title="statement not covered" >    return container;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Application cards</span>
-<span class="cstat-no" title="statement not covered" >  for (const app of filteredApps) {</span>
-<span class="cstat-no" title="statement not covered" >    container.appendChild(createApplicationCard(app));</span>
+<span class="cstat-no" title="statement not covered" >  if (status.isUnlimited) {</span>
+<span class="cstat-no" title="statement not covered" >    // Pro tier - show unlimited badge</span>
+<span class="cstat-no" title="statement not covered" >    container.innerHTML = `</span>
+<span class="cstat-no" title="statement not covered" >      &lt;span class="planscope-usage-badge pro"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;span class="planscope-usage-icon"&gt;&amp;#x221E;&lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;span class="planscope-usage-text"&gt;Pro&lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >    `;</span>
+<span class="cstat-no" title="statement not covered" >  } else {</span>
+<span class="cstat-no" title="statement not covered" >    // Free tier - show remaining lookups</span>
+<span class="cstat-no" title="statement not covered" >    const remaining = status.remaining;</span>
+<span class="cstat-no" title="statement not covered" >    const limit = status.limit;</span>
+<span class="cstat-no" title="statement not covered" >    const isLow = remaining &lt;= 3;</span>
+<span class="cstat-no" title="statement not covered" >    const isEmpty = remaining === 0;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    container.innerHTML = `</span>
+<span class="cstat-no" title="statement not covered" >      &lt;span class="planscope-usage-badge ${isEmpty ? 'empty' : isLow ? 'low' : 'normal'}"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;span class="planscope-usage-count"&gt;${remaining}/${limit}&lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >    `;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return container;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >function filterApplications(</span>
-<span class="cstat-no" title="statement not covered" >  applications: PlanningApplication[],</span>
-<span class="cstat-no" title="statement not covered" >  filters: FilterState</span>
-<span class="cstat-no" title="statement not covered" >): PlanningApplication[] {</span>
-<span class="cstat-no" title="statement not covered" >  let filtered = [...applications];</span>
+<span class="cstat-no" title="statement not covered" >export function updateUsageIndicator(container: HTMLElement, status: UsageStatus | undefined): void {</span>
+<span class="cstat-no" title="statement not covered" >  container.innerHTML = '';</span>
+<span class="cstat-no" title="statement not covered" >  const newIndicator = createUsageIndicator(status);</span>
+<span class="cstat-no" title="statement not covered" >  container.innerHTML = newIndicator.innerHTML;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Filter by status</span>
-<span class="cstat-no" title="statement not covered" >  if (filters.status.length &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >    filtered = filtered.filter((app) =&gt; filters.status.includes(app.status));</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >export function getUsageIndicatorStyles(): string {</span>
+<span class="cstat-no" title="statement not covered" >  return `</span>
+<span class="cstat-no" title="statement not covered" >    .planscope-usage-indicator {</span>
+<span class="cstat-no" title="statement not covered" >      display: flex;</span>
+<span class="cstat-no" title="statement not covered" >      align-items: center;</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Filter by type</span>
-<span class="cstat-no" title="statement not covered" >  if (filters.types.length &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >    filtered = filtered.filter((app) =&gt; filters.types.includes(app.type));</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >    .planscope-usage-badge {</span>
+<span class="cstat-no" title="statement not covered" >      display: inline-flex;</span>
+<span class="cstat-no" title="statement not covered" >      align-items: center;</span>
+<span class="cstat-no" title="statement not covered" >      gap: 4px;</span>
+<span class="cstat-no" title="statement not covered" >      padding: 3px 8px;</span>
+<span class="cstat-no" title="statement not covered" >      border-radius: 12px;</span>
+<span class="cstat-no" title="statement not covered" >      font-size: 11px;</span>
+<span class="cstat-no" title="statement not covered" >      font-weight: 600;</span>
+<span class="cstat-no" title="statement not covered" >      background: rgba(255, 255, 255, 0.2);</span>
+<span class="cstat-no" title="statement not covered" >      color: white;</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // Filter by date range</span>
-<span class="cstat-no" title="statement not covered" >  if (filters.fromDate) {</span>
-<span class="cstat-no" title="statement not covered" >    const fromDate = new Date(filters.fromDate);</span>
-<span class="cstat-no" title="statement not covered" >    filtered = filtered.filter((app) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if (!app.decision_date) return true;</span>
-<span class="cstat-no" title="statement not covered" >      return new Date(app.decision_date) &gt;= fromDate;</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >    .planscope-usage-badge.pro {</span>
+<span class="cstat-no" title="statement not covered" >      background: rgba(34, 197, 94, 0.3);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  if (filters.toDate) {</span>
-<span class="cstat-no" title="statement not covered" >    const toDate = new Date(filters.toDate);</span>
-<span class="cstat-no" title="statement not covered" >    filtered = filtered.filter((app) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if (!app.decision_date) return true;</span>
-<span class="cstat-no" title="statement not covered" >      return new Date(app.decision_date) &lt;= toDate;</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >    .planscope-usage-badge.normal {</span>
+<span class="cstat-no" title="statement not covered" >      background: rgba(255, 255, 255, 0.2);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return filtered;</span>
+<span class="cstat-no" title="statement not covered" >    .planscope-usage-badge.low {</span>
+<span class="cstat-no" title="statement not covered" >      background: rgba(245, 158, 11, 0.3);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    .planscope-usage-badge.empty {</span>
+<span class="cstat-no" title="statement not covered" >      background: rgba(239, 68, 68, 0.3);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    .planscope-usage-icon {</span>
+<span class="cstat-no" title="statement not covered" >      font-size: 12px;</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    .planscope-usage-count {</span>
+<span class="cstat-no" title="statement not covered" >      font-variant-numeric: tabular-nums;</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  `;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
