@@ -338,13 +338,13 @@ body {
 /* Hero Visual - Floating Cards */
 .hero-visual {
   position: relative;
-  height: 500px;
+  height: 580px;
 }
 
 .floating-card {
   position: absolute;
   background: var(--color-surface);
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: var(--shadow-xl);
 }
 
@@ -352,11 +352,11 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  max-width: 480px;
+  max-width: 520px;
 }
 
 .card-browser {
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   border: 1px solid var(--color-border);
 }
@@ -364,20 +364,20 @@ body {
 .browser-bar {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
+  gap: 16px;
+  padding: 14px 20px;
   background: #F8F8FC;
   border-bottom: 1px solid var(--color-border);
 }
 
 .browser-dots {
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 
 .browser-dots span {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
 }
 
@@ -387,26 +387,27 @@ body {
 
 .browser-url {
   flex: 1;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--color-text-muted);
   background: white;
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
 }
 
 .browser-body {
-  padding: 20px;
+  padding: 24px;
   background: white;
+  min-height: 320px;
 }
 
 .property-preview {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .property-image {
-  height: 160px;
+  height: 200px;
   background: linear-gradient(135deg, #E8E7F0 0%, #D4D3E0 100%);
   border-radius: 12px;
 }
@@ -414,26 +415,26 @@ body {
 .property-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .property-price {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--color-text);
 }
 
 .property-type {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--color-text-secondary);
 }
 
 /* Overlay Card */
 .card-overlay {
-  top: 60px;
-  right: -20px;
-  width: 240px;
-  padding: 20px;
+  top: 80px;
+  right: -40px;
+  width: 280px;
+  padding: 24px;
   box-shadow: var(--shadow-float);
   border: 1px solid rgba(124, 92, 255, 0.1);
   z-index: 2;
@@ -443,23 +444,23 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
   border-bottom: 1px solid var(--color-border);
 }
 
 .overlay-logo {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--color-primary);
 }
 
 .overlay-badge {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--color-success);
   background: rgba(16, 185, 129, 0.1);
-  padding: 4px 8px;
+  padding: 6px 12px;
   border-radius: 100px;
   animation: pulse 2s infinite;
 }
@@ -467,8 +468,8 @@ body {
 .overlay-stats {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .stat-row {
@@ -478,12 +479,12 @@ body {
 }
 
 .stat-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text-muted);
 }
 
 .stat-value {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -495,13 +496,13 @@ body {
 .overlay-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 
 .tag {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
-  padding: 4px 10px;
+  padding: 6px 12px;
   border-radius: 100px;
 }
 
@@ -517,30 +518,30 @@ body {
 
 /* Notification Card */
 .card-notification {
-  bottom: 100px;
-  left: 40px;
+  bottom: 80px;
+  left: 20px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 18px;
+  gap: 12px;
+  padding: 16px 20px;
   box-shadow: var(--shadow-float);
   z-index: 3;
 }
 
 .notif-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--color-success);
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   border-radius: 50%;
 }
 
 .notif-text {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-text);
 }
@@ -1150,19 +1151,24 @@ body {
   }
 
   .hero-visual {
-    height: 400px;
-    max-width: 500px;
+    height: 480px;
+    max-width: 560px;
     margin: 0 auto;
+  }
+
+  .card-main {
+    max-width: 440px;
   }
 
   .card-overlay {
     right: 0;
-    top: 40px;
+    top: 60px;
+    width: 260px;
   }
 
   .card-notification {
-    left: 20px;
-    bottom: 60px;
+    left: 0;
+    bottom: 40px;
   }
 
   .features-grid {
@@ -1210,22 +1216,34 @@ body {
   }
 
   .hero-visual {
-    height: 350px;
+    height: 420px;
+    max-width: 100%;
   }
 
   .card-main {
     max-width: 100%;
   }
 
+  .browser-body {
+    padding: 20px;
+    min-height: 240px;
+  }
+
+  .property-image {
+    height: 140px;
+  }
+
   .card-overlay {
-    width: 200px;
-    padding: 16px;
+    width: 220px;
+    padding: 18px;
     right: -10px;
+    top: 40px;
   }
 
   .card-notification {
-    left: 10px;
-    padding: 12px 14px;
+    left: 0;
+    bottom: 20px;
+    padding: 12px 16px;
   }
 
   .trust-numbers {
@@ -1270,12 +1288,20 @@ body {
 
 @media (max-width: 480px) {
   .hero-visual {
-    height: 320px;
+    height: 380px;
   }
 
   .card-overlay {
-    width: 180px;
-    font-size: 11px;
+    width: 200px;
+    padding: 16px;
+  }
+
+  .overlay-stats {
+    gap: 12px;
+  }
+
+  .stat-label, .stat-value {
+    font-size: 13px;
   }
 
   .overlay-tags {
