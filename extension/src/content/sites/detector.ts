@@ -5,7 +5,7 @@ import { extractZooplaData } from './zoopla';
 // URL patterns for supported property listing sites
 const SITE_PATTERNS: Record<SupportedSite, RegExp> = {
   rightmove: /rightmove\.co\.uk\/properties\/\d+/,
-  zoopla: /zoopla\.co\.uk\/(for-sale|to-rent|new-homes)\/details\/\d+/,
+  zoopla: /zoopla\.co\.uk\/((for-sale|to-rent|new-homes)\/details\/\d+|property\/uprn\/\d+)/,
   unknown: /^$/,
 };
 
@@ -44,7 +44,7 @@ export function isPropertyDetailPage(site: SupportedSite): boolean {
     case 'rightmove':
       return /\/properties\/\d+/.test(window.location.pathname);
     case 'zoopla':
-      return /\/details\/\d+/.test(window.location.pathname);
+      return /\/(details|uprn)\/\d+/.test(window.location.pathname);
     default:
       return false;
   }

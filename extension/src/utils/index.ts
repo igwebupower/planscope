@@ -72,11 +72,48 @@ function toRad(deg: number): number {
 
 /**
  * Extract postcode from address string
+ * Supports full postcodes (E16 1XX) and partial outcodes (E16)
  */
 export function extractPostcode(address: string): string | null {
-  const postcodeRegex = /[A-Z]{1,2}[0-9][0-9A-Z]?\s*[0-9][A-Z]{2}/i;
-  const match = address.match(postcodeRegex);
-  return match ? match[0].toUpperCase() : null;
+  // Try full postcode first (e.g., "E16 1XX", "SW1A 1AA")
+  const fullPostcodeRegex = /[A-Z]{1,2}[0-9][0-9A-Z]?\s*[0-9][A-Z]{2}/i;
+  const fullMatch = address.match(fullPostcodeRegex);
+  if (fullMatch) {
+    return fullMatch[0].toUpperCase();
+  }
+
+  // Fall back to partial outcode (e.g., "E16", "SW1A", "EC1")
+  // Must be at word boundary to avoid matching random letter-number combos
+  const outcodeRegex = /\b([A-Z]{1,2}[0-9][0-9A-Z]?)\b/i;
+  const outcodeMatch = address.match(outcodeRegex);
+  if (outcodeMatch) {
+    return outcodeMatch[1].toUpperCase();
+  }
+
+  return null;
+}
+
+/**
+ * Clean address string for geocoding
+ * Removes property listing prefixes like "3 bed property for sale"
+ */
+export function cleanAddressForGeocoding(address: string): string {
+  // Remove common property listing prefixes
+  const patterns = [
+    /^\d+\s*bed(room)?\s*(flat|house|apartment|property|home|bungalow|maisonette|studio)?\s*(for\s*(sale|rent))?\s*/i,
+    /^(flat|house|apartment|property|home|bungalow|maisonette|studio)\s*(for\s*(sale|rent))?\s*/i,
+    /^for\s*(sale|rent)\s*/i,
+  ];
+
+  let cleaned = address;
+  for (const pattern of patterns) {
+    cleaned = cleaned.replace(pattern, '');
+  }
+
+  // Remove leading punctuation/whitespace
+  cleaned = cleaned.replace(/^[\s,\-:]+/, '');
+
+  return cleaned.trim() || address;
 }
 
 /**
