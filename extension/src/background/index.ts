@@ -10,10 +10,79 @@ import {
   setTier,
   resetUsageData,
 } from '../services/usage';
+import {
+  validateLicenceKey,
+  getStoredLicence,
+  storeLicence,
+  clearLicence,
+  isLicenceExpired,
+  getLicenceStatus,
+  shouldRevalidate,
+  updateLastCheck,
+  getCheckoutUrl,
+  type LicenceData,
+} from '../services/licence';
 
-chrome.runtime.onInstalled.addListener(() => {
+chrome.runtime.onInstalled.addListener(async () => {
   console.log('[PlanScope] Extension installed');
+  // Check licence status on install/update
+  await checkLicenceOnStartup();
 });
+
+chrome.runtime.onStartup.addListener(async () => {
+  console.log('[PlanScope] Browser started');
+  // Check licence status on browser startup
+  await checkLicenceOnStartup();
+});
+
+/**
+ * Check licence status on startup and set tier accordingly
+ */
+async function checkLicenceOnStartup(): Promise<void> {
+  try {
+    const licence = await getStoredLicence();
+
+    if (!licence) {
+      await setTier('free');
+      console.log('[PlanScope] No licence found, tier set to free');
+      return;
+    }
+
+    // Check if expired locally first
+    if (isLicenceExpired(licence)) {
+      await setTier('free');
+      console.log('[PlanScope] Licence expired, tier set to free');
+      return;
+    }
+
+    // Re-validate with server if needed (once per day)
+    if (await shouldRevalidate()) {
+      console.log('[PlanScope] Re-validating licence with server');
+      const result = await validateLicenceKey(licence.key);
+
+      if (!result.valid) {
+        await clearLicence();
+        await setTier('free');
+        console.log('[PlanScope] Licence invalid on server, tier set to free');
+        return;
+      }
+
+      await updateLastCheck();
+    }
+
+    await setTier('pro');
+    console.log('[PlanScope] Valid licence found, tier set to pro');
+  } catch (error) {
+    console.error('[PlanScope] Error checking licence on startup:', error);
+    // On error, trust cached licence if valid
+    const licence = await getStoredLicence();
+    if (licence && !isLicenceExpired(licence)) {
+      await setTier('pro');
+    } else {
+      await setTier('free');
+    }
+  }
+}
 
 // Handle messages from content scripts
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
@@ -64,6 +133,22 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     case 'RESET_USAGE':
       handleResetUsage(sendResponse);
       return true;
+
+    case 'VALIDATE_LICENCE':
+      handleValidateLicence(message.licenceKey, sendResponse);
+      return true;
+
+    case 'GET_LICENCE_STATUS':
+      handleGetLicenceStatus(sendResponse);
+      return true;
+
+    case 'CLEAR_LICENCE':
+      handleClearLicence(sendResponse);
+      return true;
+
+    case 'GET_CHECKOUT_URL':
+      sendResponse({ success: true, url: getCheckoutUrl() });
+      return false;
 
     default:
       console.warn('[PlanScope Background] Unknown message type:', message.type);
@@ -204,6 +289,67 @@ async function handleResetUsage(sendResponse: (response: any) => void) {
     sendResponse({ success: true, status });
   } catch (error) {
     console.error('[PlanScope Background] Error resetting usage:', error);
+    sendResponse({
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
+async function handleValidateLicence(
+  licenceKey: string,
+  sendResponse: (response: any) => void
+) {
+  try {
+    console.log('[PlanScope Background] Validating licence key');
+    const result = await validateLicenceKey(licenceKey);
+
+    if (result.valid) {
+      // Store the licence and update tier
+      const licenceData: LicenceData = {
+        key: licenceKey.toUpperCase(),
+        email: result.email || '',
+        expiresAt: result.expiresAt || null,
+        activatedAt: new Date().toISOString(),
+      };
+      await storeLicence(licenceData);
+      await updateLastCheck();
+      await setTier('pro');
+      console.log('[PlanScope Background] Licence activated successfully');
+    }
+
+    sendResponse({ success: true, ...result });
+  } catch (error) {
+    console.error('[PlanScope Background] Error validating licence:', error);
+    sendResponse({
+      success: false,
+      valid: false,
+      error: error instanceof Error ? error.message : 'Validation failed',
+    });
+  }
+}
+
+async function handleGetLicenceStatus(sendResponse: (response: any) => void) {
+  try {
+    const status = await getLicenceStatus();
+    sendResponse({ success: true, ...status });
+  } catch (error) {
+    console.error('[PlanScope Background] Error getting licence status:', error);
+    sendResponse({
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
+async function handleClearLicence(sendResponse: (response: any) => void) {
+  try {
+    await clearLicence();
+    await setTier('free');
+    console.log('[PlanScope Background] Licence cleared');
+    sendResponse({ success: true });
+  } catch (error) {
+    console.error('[PlanScope Background] Error clearing licence:', error);
     sendResponse({
       success: false,
       error: error instanceof Error ? error.message : String(error),

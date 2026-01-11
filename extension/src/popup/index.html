@@ -384,6 +384,88 @@
       justify-content: center;
     }
 
+    /* Licence Section */
+    .licence-section {
+      text-align: center;
+      padding: 16px 0;
+    }
+    .licence-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .licence-icon.pro {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    }
+    .licence-icon svg {
+      width: 32px;
+      height: 32px;
+      color: white;
+    }
+    .licence-section h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .licence-section p {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 16px;
+    }
+    .licence-divider {
+      font-size: 12px;
+      color: #666;
+      margin: 16px 0;
+    }
+    .licence-input-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .licence-input {
+      flex: 1;
+      padding: 10px 12px;
+      background: #16213e;
+      border: 1px solid #2a2a4a;
+      border-radius: 6px;
+      color: #eee;
+      font-size: 13px;
+      font-family: monospace;
+      text-transform: uppercase;
+    }
+    .licence-input::placeholder {
+      color: #666;
+      text-transform: none;
+    }
+    .licence-input:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+    .licence-error {
+      color: #ef4444;
+      font-size: 12px;
+      margin-top: 8px;
+      text-align: left;
+    }
+    .licence-email {
+      font-size: 14px;
+      color: #bbb;
+      margin-bottom: 8px;
+    }
+    .licence-expires {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 16px;
+    }
+    .hidden {
+      display: none !important;
+    }
+
     /* Footer */
     .footer {
       margin-top: 16px;
@@ -439,6 +521,7 @@
     <!-- Tabs -->
     <div class="tabs">
       <button class="tab active" data-tab="status">Status</button>
+      <button class="tab" data-tab="licence">Licence</button>
       <button class="tab" data-tab="settings">Settings</button>
     </div>
 
@@ -484,6 +567,40 @@
           <div class="site">Rightmove</div>
           <div class="site">Zoopla</div>
         </div>
+      </div>
+    </div>
+
+    <!-- Licence Tab -->
+    <div id="licence-tab" class="tab-content">
+      <!-- Free State -->
+      <div class="licence-section" id="licence-free-state">
+        <div class="licence-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3>Upgrade to Pro</h3>
+        <p>Unlimited lookups, all constraints, priority support</p>
+        <button class="btn btn-primary" id="upgrade-btn">Upgrade Now - £9/month</button>
+        <p class="licence-divider">— or enter a licence key —</p>
+        <div class="licence-input-group">
+          <input type="text" id="licence-key-input" class="licence-input" placeholder="PS-XXXX-XXXX-XXXX-XXXX" maxlength="23">
+          <button class="btn btn-secondary" id="activate-btn" style="width: auto; padding: 10px 16px;">Activate</button>
+        </div>
+        <p class="licence-error hidden" id="licence-error"></p>
+      </div>
+
+      <!-- Pro State -->
+      <div class="licence-section hidden" id="licence-pro-state">
+        <div class="licence-icon pro">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3>Pro Licence Active</h3>
+        <p class="licence-email" id="licence-email"></p>
+        <p class="licence-expires" id="licence-expires"></p>
+        <button class="btn btn-danger" id="deactivate-btn">Deactivate Licence</button>
       </div>
     </div>
 

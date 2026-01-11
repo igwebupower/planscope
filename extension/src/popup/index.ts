@@ -47,6 +47,17 @@ const usageText = document.getElementById('usage-text') as HTMLElement;
 const usageReset = document.getElementById('usage-reset') as HTMLElement;
 const upgradeLink = document.getElementById('upgrade-link') as HTMLAnchorElement;
 
+// Licence DOM Elements
+const licenceFreeState = document.getElementById('licence-free-state') as HTMLElement;
+const licenceProState = document.getElementById('licence-pro-state') as HTMLElement;
+const licenceKeyInput = document.getElementById('licence-key-input') as HTMLInputElement;
+const activateBtn = document.getElementById('activate-btn') as HTMLButtonElement;
+const upgradeBtn = document.getElementById('upgrade-btn') as HTMLButtonElement;
+const deactivateBtn = document.getElementById('deactivate-btn') as HTMLButtonElement;
+const licenceError = document.getElementById('licence-error') as HTMLElement;
+const licenceEmail = document.getElementById('licence-email') as HTMLElement;
+const licenceExpires = document.getElementById('licence-expires') as HTMLElement;
+
 /**
  * Show toast notification
  */
@@ -267,6 +278,155 @@ function handleTabClick(e: Event) {
 }
 
 /**
+ * Validate licence key format
+ */
+function isValidLicenceFormat(key: string): boolean {
+  return /^PS-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(key.toUpperCase());
+}
+
+/**
+ * Show licence error message
+ */
+function showLicenceError(message: string) {
+  licenceError.textContent = message;
+  licenceError.classList.remove('hidden');
+}
+
+/**
+ * Hide licence error message
+ */
+function hideLicenceError() {
+  licenceError.classList.add('hidden');
+}
+
+/**
+ * Update licence UI based on status
+ */
+function updateLicenceUI(isPro: boolean, licenceData?: { email?: string; expiresAt?: string | null }) {
+  if (isPro && licenceData) {
+    licenceFreeState.classList.add('hidden');
+    licenceProState.classList.remove('hidden');
+    licenceEmail.textContent = licenceData.email || '';
+    licenceExpires.textContent = licenceData.expiresAt
+      ? `Expires: ${new Date(licenceData.expiresAt).toLocaleDateString()}`
+      : 'Lifetime licence';
+  } else {
+    licenceFreeState.classList.remove('hidden');
+    licenceProState.classList.add('hidden');
+  }
+}
+
+/**
+ * Load licence status from background
+ */
+async function loadLicenceStatus() {
+  try {
+    const response = await new Promise<any>((resolve) => {
+      chrome.runtime.sendMessage({ type: 'GET_LICENCE_STATUS' }, resolve);
+    });
+
+    if (response?.success && response.hasLicence && response.licence) {
+      updateLicenceUI(true, response.licence);
+    } else {
+      updateLicenceUI(false);
+    }
+  } catch (error) {
+    console.error('Failed to load licence status:', error);
+    updateLicenceUI(false);
+  }
+}
+
+/**
+ * Handle upgrade button click - open Stripe Checkout
+ */
+async function handleUpgradeClick() {
+  try {
+    const response = await new Promise<any>((resolve) => {
+      chrome.runtime.sendMessage({ type: 'GET_CHECKOUT_URL' }, resolve);
+    });
+
+    if (response?.success && response.url) {
+      chrome.tabs.create({ url: response.url });
+    } else {
+      // Fallback URL
+      chrome.tabs.create({ url: 'https://planscope.vercel.app/#pricing' });
+    }
+  } catch {
+    chrome.tabs.create({ url: 'https://planscope.vercel.app/#pricing' });
+  }
+}
+
+/**
+ * Handle licence activation
+ */
+async function handleActivateLicence() {
+  const licenceKey = licenceKeyInput.value.trim().toUpperCase();
+  hideLicenceError();
+
+  if (!licenceKey) {
+    showLicenceError('Please enter a licence key');
+    return;
+  }
+
+  if (!isValidLicenceFormat(licenceKey)) {
+    showLicenceError('Invalid licence key format. Expected: PS-XXXX-XXXX-XXXX-XXXX');
+    return;
+  }
+
+  activateBtn.disabled = true;
+  activateBtn.textContent = 'Validating...';
+
+  try {
+    const response = await new Promise<any>((resolve) => {
+      chrome.runtime.sendMessage({ type: 'VALIDATE_LICENCE', licenceKey }, resolve);
+    });
+
+    if (response?.success && response.valid) {
+      updateLicenceUI(true, { email: response.email, expiresAt: response.expiresAt });
+      await updateUsageDisplay();
+      showToast('Pro licence activated!');
+      licenceKeyInput.value = '';
+    } else {
+      showLicenceError(response?.error || 'Invalid licence key');
+    }
+  } catch (error) {
+    console.error('Licence activation error:', error);
+    showLicenceError('Failed to validate licence. Please try again.');
+  } finally {
+    activateBtn.disabled = false;
+    activateBtn.textContent = 'Activate';
+  }
+}
+
+/**
+ * Handle licence deactivation
+ */
+async function handleDeactivateLicence() {
+  deactivateBtn.disabled = true;
+  deactivateBtn.textContent = 'Deactivating...';
+
+  try {
+    const response = await new Promise<any>((resolve) => {
+      chrome.runtime.sendMessage({ type: 'CLEAR_LICENCE' }, resolve);
+    });
+
+    if (response?.success) {
+      updateLicenceUI(false);
+      await updateUsageDisplay();
+      showToast('Licence deactivated');
+    } else {
+      showToast('Failed to deactivate licence', true);
+    }
+  } catch (error) {
+    console.error('Licence deactivation error:', error);
+    showToast('Failed to deactivate licence', true);
+  } finally {
+    deactivateBtn.disabled = false;
+    deactivateBtn.textContent = 'Deactivate Licence';
+  }
+}
+
+/**
  * Initialize popup
  */
 async function init() {
@@ -282,11 +442,39 @@ async function init() {
   clearCacheBtn.addEventListener('click', handleClearCache);
   checkApiBtn.addEventListener('click', handleApiTest);
 
+  // Setup licence handlers
+  upgradeBtn.addEventListener('click', handleUpgradeClick);
+  activateBtn.addEventListener('click', handleActivateLicence);
+  deactivateBtn.addEventListener('click', handleDeactivateLicence);
+
+  // Auto-format licence key input
+  licenceKeyInput.addEventListener('input', (e) => {
+    const input = e.target as HTMLInputElement;
+    let value = input.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+
+    // Add hyphens automatically
+    if (value.length > 2 && !value.startsWith('PS')) {
+      value = 'PS' + value.substring(2);
+    }
+
+    // Format with hyphens: PS-XXXX-XXXX-XXXX-XXXX
+    const parts = [];
+    if (value.length >= 2) parts.push(value.substring(0, 2));
+    if (value.length > 2) parts.push(value.substring(2, 6));
+    if (value.length > 6) parts.push(value.substring(6, 10));
+    if (value.length > 10) parts.push(value.substring(10, 14));
+    if (value.length > 14) parts.push(value.substring(14, 18));
+
+    input.value = parts.join('-');
+    hideLicenceError();
+  });
+
   // Load initial data
   await loadSettings();
   await updateUsageDisplay();
   await updateCacheStats();
   await updateConnectionStatus();
+  await loadLicenceStatus();
 
   // Clear expired cache entries on popup open
   clearExpiredCache().catch(console.error);
