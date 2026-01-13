@@ -6,7 +6,14 @@
     { "source": "/help", "destination": "/help.html" },
     { "source": "/status", "destination": "/status.html" },
     { "source": "/checkout/success", "destination": "/checkout/success.html" },
-    { "source": "/checkout/cancelled", "destination": "/checkout/cancelled.html" }
+    { "source": "/checkout/cancelled", "destination": "/checkout/cancelled.html" },
+    { "source": "/licence/validate", "destination": "/api/licence/validate" },
+    { "source": "/licence/check/:key", "destination": "/api/licence/check/:key" },
+    { "source": "/checkout/redirect", "destination": "/api/checkout/redirect" },
+    { "source": "/checkout/create-session", "destination": "/api/checkout/create-session" },
+    { "source": "/checkout/get-licence", "destination": "/api/checkout/get-licence" },
+    { "source": "/webhook/stripe", "destination": "/api/webhook/stripe" },
+    { "source": "/health", "destination": "/api/health" }
   ],
   "headers": [
     {
