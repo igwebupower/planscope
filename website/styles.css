@@ -392,6 +392,34 @@ button {
   border-color: var(--color-ink-faint);
 }
 
+/* Chrome Extension Button */
+.btn-chrome {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 24px;
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: #fff;
+  background: #1a73e8;
+  border-radius: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: background var(--duration-fast),
+              box-shadow var(--duration-fast),
+              transform var(--duration-fast) var(--ease-out);
+}
+
+.btn-chrome:hover {
+  background: #1557b0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.btn-chrome .chrome-icon {
+  flex-shrink: 0;
+}
+
 /* ========================================
    Product Visual
    ======================================== */
@@ -1102,6 +1130,7 @@ button {
   .footer-col a,
   .btn-primary,
   .btn-secondary,
+  .btn-chrome,
   .cookie-btn {
     min-height: 44px;
     display: inline-flex;
@@ -1297,7 +1326,8 @@ button {
   }
 
   .btn-primary,
-  .btn-secondary {
+  .btn-secondary,
+  .btn-chrome {
     width: 100%;
     padding: var(--space-4) var(--space-6);
     justify-content: center;

@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="PlanScope shows planning permission data directly on Rightmove and Zoopla. See what's been approved nearby, approval rates, and restrictions.">
   <meta name="keywords" content="planning permission, UK property, Rightmove, Zoopla, property investment, Chrome extension">
-  <meta name="theme-color" content="#1a3a5c">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta property="og:title" content="PlanScope — Planning data on every listing">
   <meta property="og:description" content="See planning permission data instantly while browsing UK property listings.">
   <meta property="og:type" content="website">
@@ -18,7 +15,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
-  <link rel="apple-touch-icon" href="assets/logo.png">
 </head>
 <body>
   <!-- Navigation -->
@@ -30,7 +26,7 @@
       <div class="nav-links">
         <a href="#how-it-works">How it works</a>
         <a href="#pricing">Pricing</a>
-        <a href="https://chrome.google.com/webstore" class="nav-cta" target="_blank" rel="noopener">
+        <a href="https://chromewebstore.google.com/detail/planscope/oibfgcjlfgghhebfkpjoplfjmppgaphe" class="nav-cta" target="_blank" rel="noopener">
           Get the extension
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8.5h10m0 0L9.5 5m3.5 3.5L9.5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -48,7 +44,7 @@
   <div class="mobile-menu" role="dialog" aria-label="Mobile navigation">
     <a href="#how-it-works">How it works</a>
     <a href="#pricing">Pricing</a>
-    <a href="https://chrome.google.com/webstore" class="mobile-cta" target="_blank" rel="noopener">Get the extension</a>
+    <a href="https://chromewebstore.google.com/detail/planscope/oibfgcjlfgghhebfkpjoplfjmppgaphe" class="mobile-cta" target="_blank" rel="noopener">Get the extension</a>
   </div>
 
   <!-- Hero -->
@@ -61,10 +57,25 @@
         and development restrictions — without leaving the page.
       </p>
       <div class="hero-actions">
-        <a href="https://chrome.google.com/webstore" class="btn-primary" target="_blank" rel="noopener">
-          Add to Chrome — free
+        <a href="https://chromewebstore.google.com/detail/planscope/oibfgcjlfgghhebfkpjoplfjmppgaphe" class="btn-chrome" target="_blank" rel="noopener">
+          <svg class="chrome-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="#fff"/>
+            <path fill="#EA4335" d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L8.1 8.62A5.98 5.98 0 0 1 12 6c1.47 0 2.82.53 3.86 1.41L19.2 4.07A9.95 9.95 0 0 0 12 2z"/>
+            <path fill="#FBBC05" d="M5 17.65A9.96 9.96 0 0 0 12 22c2.48 0 4.74-.9 6.49-2.39l-4.64-3.58a5.98 5.98 0 0 1-3.85 1.4 5.99 5.99 0 0 1-5-2.78z"/>
+            <path fill="#34A853" d="M22 12c0-1.36-.27-2.66-.76-3.85l-6.61 5.08c.23.57.37 1.19.37 1.84 0 1.47-.53 2.82-1.41 3.86l4.64 3.58A9.95 9.95 0 0 0 22 12z"/>
+            <path fill="#4285F4" d="M12 6c1.47 0 2.82.53 3.86 1.41l3.34-3.34A9.95 9.95 0 0 0 12 2C8.59 2 5.6 3.79 3.91 6.5l4.19 3.22A5.99 5.99 0 0 1 12 6z"/>
+            <circle cx="12" cy="12" r="4" fill="#fff"/>
+            <circle cx="12" cy="12" r="4" fill="url(#chrome-gradient)"/>
+            <defs>
+              <radialGradient id="chrome-gradient" cx="12" cy="12" r="4">
+                <stop offset="0%" stop-color="#4285F4"/>
+                <stop offset="100%" stop-color="#4285F4"/>
+              </radialGradient>
+            </defs>
+          </svg>
+          Add to Chrome
         </a>
-        <p class="hero-note">No account required</p>
+        <p class="hero-note">Free — No account required</p>
       </div>
     </div>
   </header>
@@ -267,7 +278,7 @@
             <li>Authority approval rates</li>
             <li>Basic constraints</li>
           </ul>
-          <a href="https://chrome.google.com/webstore" class="btn-secondary" target="_blank" rel="noopener">
+          <a href="https://chromewebstore.google.com/detail/planscope/oibfgcjlfgghhebfkpjoplfjmppgaphe" class="btn-secondary" target="_blank" rel="noopener">
             Get started
           </a>
         </div>
@@ -287,7 +298,7 @@
             <li>Offline access</li>
             <li>Email support</li>
           </ul>
-          <a href="https://chrome.google.com/webstore" class="btn-primary" target="_blank" rel="noopener">
+          <a href="https://chromewebstore.google.com/detail/planscope/oibfgcjlfgghhebfkpjoplfjmppgaphe" class="btn-primary" target="_blank" rel="noopener">
             Start free trial
           </a>
         </div>
@@ -320,8 +331,23 @@
     <div class="cta-inner">
       <h2 class="cta-title">Make informed decisions</h2>
       <p class="cta-text">Planning intelligence on every property you browse.</p>
-      <a href="https://chrome.google.com/webstore" class="btn-primary" target="_blank" rel="noopener">
-        Add to Chrome — free
+      <a href="https://chromewebstore.google.com/detail/planscope/oibfgcjlfgghhebfkpjoplfjmppgaphe" class="btn-chrome" target="_blank" rel="noopener">
+        <svg class="chrome-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" fill="#fff"/>
+          <path fill="#EA4335" d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L8.1 8.62A5.98 5.98 0 0 1 12 6c1.47 0 2.82.53 3.86 1.41L19.2 4.07A9.95 9.95 0 0 0 12 2z"/>
+          <path fill="#FBBC05" d="M5 17.65A9.96 9.96 0 0 0 12 22c2.48 0 4.74-.9 6.49-2.39l-4.64-3.58a5.98 5.98 0 0 1-3.85 1.4 5.99 5.99 0 0 1-5-2.78z"/>
+          <path fill="#34A853" d="M22 12c0-1.36-.27-2.66-.76-3.85l-6.61 5.08c.23.57.37 1.19.37 1.84 0 1.47-.53 2.82-1.41 3.86l4.64 3.58A9.95 9.95 0 0 0 22 12z"/>
+          <path fill="#4285F4" d="M12 6c1.47 0 2.82.53 3.86 1.41l3.34-3.34A9.95 9.95 0 0 0 12 2C8.59 2 5.6 3.79 3.91 6.5l4.19 3.22A5.99 5.99 0 0 1 12 6z"/>
+          <circle cx="12" cy="12" r="4" fill="#fff"/>
+          <circle cx="12" cy="12" r="4" fill="url(#chrome-gradient2)"/>
+          <defs>
+            <radialGradient id="chrome-gradient2" cx="12" cy="12" r="4">
+              <stop offset="0%" stop-color="#4285F4"/>
+              <stop offset="100%" stop-color="#4285F4"/>
+            </radialGradient>
+          </defs>
+        </svg>
+        Add to Chrome
       </a>
     </div>
   </section>
@@ -332,7 +358,7 @@
       <div class="footer-main">
         <div class="footer-brand">
           <a href="/" class="footer-logo" aria-label="PlanScope home">
-            <img src="assets/logo.svg" alt="PlanScope" height="32">
+            <img src="assets/logo.svg" alt="PlanScope" height="28">
           </a>
           <p class="footer-tagline">Planning intelligence for UK property</p>
         </div>
