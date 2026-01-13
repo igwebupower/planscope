@@ -2,27 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="PlanScope Privacy Policy - How we collect, use, and protect your data.">
+  <meta name="theme-color" content="#1a3a5c">
   <title>Privacy Policy — PlanScope</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+  <link rel="apple-touch-icon" href="assets/logo.png">
   <style>
-    .legal-page { padding: 120px 0 80px; }
+    .legal-page { padding: 120px 24px 80px; max-width: 100%; }
     .legal-header { margin-bottom: 48px; }
-    .legal-header h1 { font-size: 40px; font-weight: 700; margin-bottom: 16px; }
-    .legal-header p { color: var(--color-text-muted); }
+    .legal-header h1 { font-size: clamp(28px, 5vw, 40px); font-weight: 700; margin-bottom: 16px; }
+    .legal-header p { color: var(--color-ink-tertiary); }
     .legal-content { max-width: 720px; }
-    .legal-content h2 { font-size: 24px; font-weight: 600; margin: 48px 0 16px; }
-    .legal-content h3 { font-size: 18px; font-weight: 600; margin: 32px 0 12px; }
-    .legal-content p, .legal-content li { font-size: 16px; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: 16px; }
+    .legal-content h2 { font-size: clamp(20px, 4vw, 24px); font-weight: 600; margin: 48px 0 16px; }
+    .legal-content h3 { font-size: clamp(16px, 3vw, 18px); font-weight: 600; margin: 32px 0 12px; }
+    .legal-content p, .legal-content li { font-size: clamp(14px, 2.5vw, 16px); line-height: 1.7; color: var(--color-ink-secondary); margin-bottom: 16px; }
     .legal-content ul { padding-left: 24px; margin-bottom: 16px; }
     .legal-content li { margin-bottom: 8px; }
-    .legal-content a { color: var(--color-accent); text-decoration: underline; }
-    .legal-content strong { color: var(--color-text); }
+    .legal-content a { color: var(--color-brand-dark); text-decoration: underline; }
+    .legal-content strong { color: var(--color-ink); }
+    @media (max-width: 640px) {
+      .legal-page { padding: 100px 16px 60px; }
+      .legal-header { margin-bottom: 32px; }
+      .legal-content h2 { margin: 32px 0 12px; }
+      .legal-content h3 { margin: 24px 0 10px; }
+    }
   </style>
 </head>
 <body>
