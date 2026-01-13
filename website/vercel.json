@@ -4,7 +4,9 @@
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/cookies", "destination": "/cookies.html" },
     { "source": "/help", "destination": "/help.html" },
-    { "source": "/status", "destination": "/status.html" }
+    { "source": "/status", "destination": "/status.html" },
+    { "source": "/checkout/success", "destination": "/checkout/success.html" },
+    { "source": "/checkout/cancelled", "destination": "/checkout/cancelled.html" }
   ],
   "headers": [
     {

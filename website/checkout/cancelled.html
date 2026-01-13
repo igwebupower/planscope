@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Payment Cancelled — PlanScope</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-ink: #1a1a1a;
+      --color-ink-secondary: #4a4a4a;
+      --color-ink-tertiary: #737373;
+      --color-surface: #ffffff;
+      --color-surface-sunken: #f7f7f5;
+      --color-border: #e5e5e5;
+      --color-brand: #1a3a5c;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--color-surface-sunken);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: var(--color-ink);
+    }
+
+    .container {
+      background: var(--color-surface);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      max-width: 480px;
+      width: 100%;
+      padding: 48px 40px;
+      text-align: center;
+    }
+
+    .icon {
+      width: 64px;
+      height: 64px;
+      background: #f3f4f6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+
+    .icon svg {
+      width: 32px;
+      height: 32px;
+      color: var(--color-ink-tertiary);
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--color-ink-secondary);
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--color-brand);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-bottom: 16px;
+    }
+
+    .btn:hover {
+      background: #0f2840;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--color-ink-tertiary);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      color: var(--color-ink);
+    }
+
+    .help {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border);
+      font-size: 14px;
+      color: var(--color-ink-tertiary);
+    }
+
+    .help a {
+      color: var(--color-ink-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="15" y1="9" x2="9" y2="15"></line>
+        <line x1="9" y1="9" x2="15" y2="15"></line>
+      </svg>
+    </div>
+
+    <h1>Payment Cancelled</h1>
+    <p class="subtitle">
+      No worries — you haven't been charged. You can still use PlanScope Free
+      with 10 lookups per month.
+    </p>
+
+    <a href="/#pricing" class="btn">View pricing</a>
+    <br>
+    <a href="/" class="back-link">&larr; Back to PlanScope</a>
+
+    <div class="help">
+      <p>Questions? <a href="mailto:hello@planscope.uk">Contact us</a></p>
+    </div>
+  </div>
+</body>
+</html>
