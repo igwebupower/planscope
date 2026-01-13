@@ -5,7 +5,7 @@
 import type { UsageStatus } from '../../../types';
 
 // Landing page URL for upgrade
-const UPGRADE_URL = 'https://planscope.vercel.app/#pricing';
+const UPGRADE_URL = 'https://planscope.co.uk/#pricing';
 
 export function createUpgradePrompt(status: UsageStatus | undefined): HTMLElement {
   const container = document.createElement('div');

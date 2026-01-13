@@ -4,7 +4,7 @@
  */
 
 // API base URL - update for production
-const API_BASE_URL = 'https://planscope.vercel.app';
+const API_BASE_URL = 'https://planscope.co.uk';
 
 /**
  * Stored licence data

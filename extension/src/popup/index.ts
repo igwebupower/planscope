@@ -349,10 +349,10 @@ async function handleUpgradeClick() {
       chrome.tabs.create({ url: response.url });
     } else {
       // Fallback URL
-      chrome.tabs.create({ url: 'https://planscope.vercel.app/#pricing' });
+      chrome.tabs.create({ url: 'https://planscope.co.uk/#pricing' });
     }
   } catch {
-    chrome.tabs.create({ url: 'https://planscope.vercel.app/#pricing' });
+    chrome.tabs.create({ url: 'https://planscope.co.uk/#pricing' });
   }
 }
 
