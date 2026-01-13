@@ -4,8 +4,8 @@
 
 import type { UsageStatus } from '../../../types';
 
-// Landing page URL for upgrade
-const UPGRADE_URL = 'https://planscope.co.uk/#pricing';
+// Direct checkout URL for upgrade
+const UPGRADE_URL = 'https://planscope.co.uk/checkout/redirect';
 
 export function createUpgradePrompt(status: UsageStatus | undefined): HTMLElement {
   const container = document.createElement('div');
