@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support - PlanScope</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .support-page {
+      min-height: 100vh;
+      padding: 120px 24px 80px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .support-page h1 {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+    .support-page .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+      margin-bottom: 48px;
+    }
+    .support-section {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    .support-section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .support-section p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .support-section a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .support-section a:hover {
+      text-decoration: underline;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border-primary);
+      padding: 20px 0;
+    }
+    .faq-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .faq-item:first-child {
+      padding-top: 0;
+    }
+    .faq-item h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .faq-item p {
+      margin-bottom: 0;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-bottom: 32px;
+    }
+    .back-link:hover {
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="support-page">
+    <a href="/" class="back-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Back to home
+    </a>
+
+    <h1>Support</h1>
+    <p class="subtitle">Get help with PlanScope</p>
+
+    <div class="support-section">
+      <h2>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Contact Us
+      </h2>
+      <p>For any questions, issues, or feedback, please email us at:</p>
+      <p><a href="mailto:hello@planscope.uk">hello@planscope.uk</a></p>
+      <p>We typically respond within 24 hours on business days.</p>
+    </div>
+
+    <div class="support-section">
+      <h2>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        Frequently Asked Questions
+      </h2>
+
+      <div class="faq-item">
+        <h3>How do I install PlanScope?</h3>
+        <p>Click "Add to Chrome" on our homepage or visit the Chrome Web Store. The extension will be added to your browser automatically.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Which websites does PlanScope work on?</h3>
+        <p>PlanScope works on Rightmove and Zoopla property listings. Simply visit any property page and the planning data will appear automatically.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Why am I seeing "No planning applications found"?</h3>
+        <p>This means there are no recent planning applications near that property. This is actually good news - it suggests a stable neighbourhood.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How do I upgrade to Pro?</h3>
+        <p>Click "Upgrade" in the extension popup or visit our <a href="/#pricing">pricing page</a>. Pro gives you unlimited lookups for £9/month.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How do I activate my licence key?</h3>
+        <p>Open the extension popup, go to the "Licence" tab, and enter your licence key. It will be activated immediately.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I get a refund?</h3>
+        <p>Yes, we offer a 14-day money-back guarantee. Email us at <a href="mailto:hello@planscope.uk">hello@planscope.uk</a> with your order details.</p>
+      </div>
+    </div>
+
+    <div class="support-section">
+      <h2>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+        Legal
+      </h2>
+      <p>
+        <a href="/privacy.html">Privacy Policy</a> ·
+        <a href="/terms.html">Terms of Service</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
