@@ -10,6 +10,15 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <title>PlanScope — Planning data on every listing</title>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D5JFKPX2J6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'analytics_storage': 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-D5JFKPX2J6');
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600&display=swap" rel="stylesheet">
@@ -450,10 +459,16 @@
     function setConsent(value) {
       localStorage.setItem('planscope-cookies', value);
       banner.classList.remove('visible');
+      if (value === 'accepted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
     }
 
-    if (!localStorage.getItem('planscope-cookies')) {
+    const savedConsent = localStorage.getItem('planscope-cookies');
+    if (!savedConsent) {
       setTimeout(() => banner.classList.add('visible'), 1500);
+    } else if (savedConsent === 'accepted') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
     }
 
     accept.addEventListener('click', () => setConsent('accepted'));
