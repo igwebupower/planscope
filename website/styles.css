@@ -454,7 +454,10 @@ button {
 
 .listing-image {
   height: 200px;
-  background: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80') center/cover no-repeat;
+  background-image: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: var(--radius-md);
   position: relative;
 }
@@ -1203,6 +1206,7 @@ button {
 
   .listing-image {
     height: 180px;
+    background-image: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=700&q=80');
   }
 }
 
@@ -1341,7 +1345,9 @@ button {
   }
 
   .listing-image {
-    height: 140px;
+    height: 160px;
+    background-image: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80');
+    background-position: center 30%;
   }
 
   .listing-price {
@@ -1626,7 +1632,8 @@ button {
   }
 
   .listing-image {
-    height: 120px;
+    height: 140px;
+    background-image: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&q=80');
   }
 
   .footer-nav {
