@@ -3,6 +3,8 @@
  * Manages monthly lookup limits and subscription tiers
  */
 
+import { track } from './analytics';
+
 // Subscription tier types
 export type SubscriptionTier = 'free' | 'pro';
 
@@ -106,6 +108,9 @@ export async function incrementLookup(): Promise<UsageData> {
 
   await chrome.storage.sync.set({ [STORAGE_KEY]: updatedData });
   console.log('[PlanScope Usage] Lookup count:', updatedData.monthlyLookups);
+
+  // Track analytics
+  track('lookup_completed', { tier: data.tier, count: updatedData.monthlyLookups });
 
   return updatedData;
 }

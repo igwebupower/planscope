@@ -5,6 +5,7 @@
 
 import { checkApiHealth, setUseCache } from '../services/api';
 import { getCacheStats, clearAllCache, clearExpiredCache } from '../services/cache';
+import { track } from '../services/analytics';
 import type { UsageStatus } from '../types';
 
 /**
@@ -340,6 +341,9 @@ async function loadLicenceStatus() {
  * Handle upgrade button click - open Stripe Checkout
  */
 async function handleUpgradeClick() {
+  // Track upgrade click
+  track('upgrade_clicked');
+
   try {
     const response = await new Promise<any>((resolve) => {
       chrome.runtime.sendMessage({ type: 'GET_CHECKOUT_URL' }, resolve);

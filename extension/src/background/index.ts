@@ -22,9 +22,12 @@ import {
   getCheckoutUrl,
   type LicenceData,
 } from '../services/licence';
+import { track, trackInstall } from '../services/analytics';
 
 chrome.runtime.onInstalled.addListener(async () => {
   console.log('[PlanScope] Extension installed');
+  // Track installation
+  await trackInstall();
   // Check licence status on install/update
   await checkLicenceOnStartup();
 });
@@ -316,6 +319,8 @@ async function handleValidateLicence(
       await updateLastCheck();
       await setTier('pro');
       console.log('[PlanScope Background] Licence activated successfully');
+      // Track licence activation
+      track('licence_activated');
     }
 
     sendResponse({ success: true, ...result });
@@ -347,6 +352,8 @@ async function handleClearLicence(sendResponse: (response: any) => void) {
     await clearLicence();
     await setTier('free');
     console.log('[PlanScope Background] Licence cleared');
+    // Track licence deactivation
+    track('licence_deactivated');
     sendResponse({ success: true });
   } catch (error) {
     console.error('[PlanScope Background] Error clearing licence:', error);
