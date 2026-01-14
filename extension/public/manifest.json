@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "PlanScope",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Planning permission intelligence for UK property listings",
   "permissions": ["storage", "activeTab"],
   "host_permissions": [
