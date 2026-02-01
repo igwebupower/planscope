@@ -110,6 +110,7 @@ export interface OverlayState {
   filters: FilterState;
   limitReached?: boolean;
   usageStatus?: UsageStatus;
+  propertyAddress?: string; // For enhanced insights precedent analysis
 }
 
 // Insight types
@@ -204,3 +205,6 @@ export interface PlanningDataResponse {
   entities: PlanningDataEntity[];
   count: number;
 }
+
+// Re-export enhanced insight types
+export * from './enhanced';

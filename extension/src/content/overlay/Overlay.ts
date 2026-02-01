@@ -1,5 +1,6 @@
 import type { OverlayState, FilterState } from '../../types';
 import { getOverlayStyles } from './styles';
+import { getEnhancedStyles } from './enhancedStyles';
 import { createHeader } from './components/Header';
 import { createClimateSummary } from './components/ClimateSummary';
 import { createFilters } from './components/Filters';
@@ -11,7 +12,11 @@ import { createSkeletonLoader } from './components/SkeletonLoader';
 import { createErrorDisplay, createOfflineBanner } from './components/ErrorDisplay';
 import { createUpgradePrompt, getUpgradePromptStyles } from './components/UpgradePrompt';
 import { getUsageIndicatorStyles } from './components/UsageIndicator';
+import { createDevelopmentScore } from './components/DevelopmentScore';
+import { createEnhancedInsights } from './components/EnhancedInsights';
 import { generateInsights } from '../../services/insights';
+import { generateEnhancedInsights, shouldShowEnhancedInsights } from '../../services/enhancedInsights';
+import { getRefusalCount } from '../../services/refusalAnalysis';
 import { isOnline } from '../../services/errors';
 
 interface OverlayCallbacks {
@@ -40,9 +45,9 @@ export function createOverlay(
   // Attach shadow root (closed mode for better isolation)
   const shadow = host.attachShadow({ mode: 'closed' });
 
-  // Inject styles (base + component styles)
+  // Inject styles (base + component styles + enhanced insights styles)
   const styleElement = document.createElement('style');
-  styleElement.textContent = getOverlayStyles() + getUsageIndicatorStyles() + getUpgradePromptStyles();
+  styleElement.textContent = getOverlayStyles() + getUsageIndicatorStyles() + getUpgradePromptStyles() + getEnhancedStyles();
   shadow.appendChild(styleElement);
 
   // Create main container
@@ -135,9 +140,31 @@ export function createOverlay(
         body.appendChild(offlineBanner);
       }
 
+      // Generate enhanced insights data
+      const propertyAddress = currentState.propertyAddress || '';
+      const enhancedData = generateEnhancedInsights(
+        currentState.data.applications,
+        currentState.data.local_authority,
+        currentState.data.constraints,
+        propertyAddress
+      );
+
+      // Development Score (Hero Section) - show if we have enough data
+      if (enhancedData.developmentScore) {
+        const devScore = createDevelopmentScore(enhancedData.developmentScore);
+        body.appendChild(devScore);
+      }
+
       // Climate summary
       const climate = createClimateSummary(currentState.data.local_authority);
       body.appendChild(climate);
+
+      // Enhanced Insights (Tabbed Interface) - show if we have enough data
+      if (shouldShowEnhancedInsights(currentState.data.applications)) {
+        const refusalCount = getRefusalCount(currentState.data.applications);
+        const enhancedInsightsEl = createEnhancedInsights(enhancedData, refusalCount);
+        body.appendChild(enhancedInsightsEl);
+      }
 
       // Planning constraints (from Planning Data Platform)
       if (currentState.data.constraints) {
@@ -145,7 +172,7 @@ export function createOverlay(
         body.appendChild(constraintsEl);
       }
 
-      // Insights
+      // Basic Insights (existing)
       const insights = generateInsights(
         currentState.data.applications,
         currentState.data.local_authority
@@ -162,12 +189,12 @@ export function createOverlay(
         const centerLng = currentState.data.applications.reduce((sum, app) => sum + app.lng, 0) / currentState.data.applications.length;
 
         createMapView(centerLat, centerLng, currentState.data.applications, shadow).then((mapContainer) => {
-          // Insert map after constraints (or climate if no constraints)
-          const insertAfter = body.querySelector('.planscope-constraints') || body.querySelector('.planscope-climate');
+          // Insert map after enhanced insights (or constraints, or climate if no constraints)
+          const insertAfter = body.querySelector('.planscope-enhanced-insights') || body.querySelector('.planscope-constraints') || body.querySelector('.planscope-climate');
           if (insertAfter && insertAfter.nextSibling) {
             body.insertBefore(mapContainer, insertAfter.nextSibling);
           } else {
-            body.insertBefore(mapContainer, body.children[2] || null);
+            body.insertBefore(mapContainer, body.children[3] || null);
           }
         });
       }

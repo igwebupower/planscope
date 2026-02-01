@@ -217,6 +217,7 @@ async function init(): Promise<void> {
       fromDate: null,
       toDate: null,
     },
+    propertyAddress: propertyData.address || '', // For enhanced insights precedent analysis
   };
 
   // Create and inject the overlay
